@@ -111,11 +111,11 @@ def ChangeNames( oldedgelist ):
         warnings.warn("File not found!")
         return 0
 
-    f = open('Dictionaries/'+name+'.edgelist','w')
     C1 = list( (data.values)[:,0] )
     C2 = list( (data.values)[:,1] )
     counter = 1
     Dict = {}
+    EdgeList = set()
     for x in range( len(data) ):
         # translate
         if C1[x] not in Dict:
@@ -124,8 +124,13 @@ def ChangeNames( oldedgelist ):
         if C2[x] not in Dict:
             Dict[ C2[x] ] = counter
             counter += 1
-        # register edge in edgelist
-        f.write("{0} {1}\n".format( Dict[ C1[x] ] , Dict[ C2[x] ] ))
+        # register edge in edgelist - we ommit if it is a self-loop
+        if C1[x] != C2[x]:
+            # f.write("{0} {1}\n".format( Dict[ C1[x] ] , Dict[ C2[x] ] ))
+            EdgeList.add("{0} {1}\n".format( Dict[ C1[x] ] , Dict[ C2[x] ] ))
+    f = open('Dictionaries/'+name+'.edgelist','w')
+    for x in EdgeList:
+        f.write( x )
     f.close()
     # now save the dictionary
     f = open('Dictionaries/'+name+'.dictionary','w')

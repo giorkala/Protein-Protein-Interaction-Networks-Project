@@ -27,7 +27,8 @@ import pandas as pd
 # Work with csv module instead of pandas
 datafile = "EdgeLists/BIOGRID-ORGANISM-Homo_sapiens-3.5.165.edgelist"
 datafile = "EdgeLists/BIOGRID-ORGANISM-Human_Immunodeficiency_Virus_1-3.5.165.edgelist"
-datafile = "../../edge_list.txt"
+#datafile = "../../edge_list.txt"
+datafile = "Dictionaries/edge.egdelist"
 #print("translate edgelist")
 Dictionary = ChangeNames( datafile )
 
