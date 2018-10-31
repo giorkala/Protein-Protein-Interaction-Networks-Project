@@ -90,11 +90,16 @@ def createAdjMatrix( Graph, Name ):
 
 def ChangeNames( oldedgelist ):
     """
-    This function translates the huge numbers used for names in BioGrid datasets
+    This function translates the huge numbers used for labels in BioGrid datasets
     to naming from 1,2,... . First it loads a file with edgelists, then translate
-    to "small" names and save a new edgelist file as well as the dictionary.
+    to "small" labels and save a new edgelist file as well as the dictionary.
+    It also removes multiple copies of the same edge or self-loops. This is
+    implemented by adding ony "min(a,b) - max(a,b)" for any (a,b) or (b,a) edge
+    in a set data structure.
     """
-    import pandas as pd
+    #import pandas as pd
+    # OR
+    import csv
     import networkx as nx
     import matplotlib.pyplot as plt
     import sys, warnings
@@ -106,7 +111,9 @@ def ChangeNames( oldedgelist ):
     # shortname = name[ len("BIOGRID-ORGANISM-") :  (len(name)-len("-3.5.165.tab2.txt")) ]
     name = name[ : (len(name) -len(".tab2.txt")) ]
     if path.exists(oldedgelist):
-        data = pd.read_csv(oldedgelist, delimiter=' ', header=None)
+        #data = pd.read_csv(oldedgelist, delimiter=' ', header=None)
+        # OR
+        data = open(oldedgelist, 'rb')
     else:
         warnings.warn("File not found!")
         return 0
@@ -127,12 +134,16 @@ def ChangeNames( oldedgelist ):
         # register edge in edgelist - we ommit if it is a self-loop
         if C1[x] != C2[x]:
             # f.write("{0} {1}\n".format( Dict[ C1[x] ] , Dict[ C2[x] ] ))
-            EdgeList.add("{0} {1}\n".format( Dict[ C1[x] ] , Dict[ C2[x] ] ))
+            # EdgeList.add("{0} {1}\n".format( Dict[ C1[x] ] , Dict[ C2[x] ] ))
+            a = min( Dict[ C1[x] ] , Dict[ C2[x] ] )
+            b = max( Dict[ C1[x] ] , Dict[ C2[x] ] )
+            EdgeList.add("{0} {1}\n".format( a, b ))
+    # save in the edgelist file
     f = open('Dictionaries/'+name+'.edgelist','w')
     for x in EdgeList:
         f.write( x )
     f.close()
-    # now save the dictionary
+    # now save the dictionary for translation
     f = open('Dictionaries/'+name+'.dictionary','w')
     for key in Dict.keys():
         f.write("{0}:{1}\n".format( Dict[ key ], key ) )
