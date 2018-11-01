@@ -50,9 +50,9 @@ for filename in os.listdir('Sizes'):
 	k=np.exp(lsq.x[0])
 	tfd=lsq.x[1]
 	fitted=[k*(1.0/lbox)**tfd for lbox in lboxes]
-    results=open('TFD2/'+filename,"w")
+    	results=open('TFD2/'+filename,"w")
 	results.write(str(tfd)+"\n")
 	results.write(str(lbmax)+"\n")
 	results.write(str(nb)+"\n")
 	results.write(str(fitted)+"\n")
-    results.close()
+    	results.close()
