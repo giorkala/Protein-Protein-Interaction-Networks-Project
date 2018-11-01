@@ -1,0 +1,31 @@
+\label{sec:2-task1}
+There are various software packages or programmatic methods available to build and analyse networks. Throughout this project we work mainly with \textsc{Python} and the \textsc{NetworkX} module. Furthermore, there are a lot of sources from which you can obtain and integrate PPI data, other than creating new experimental results. Current databases are distinguished in primary or predicting, depending on whether they just provide evidence or combine other resources for prediction. For the aims of this project we will be working with data from \textsc{BioGrid}, which is a primary curated biological database of protein-protein interactions, genetic interactions, chemical interactions, and post-translational modifications.
+
+\subsection{Hands-on \textsc{BioGrid} \& \textsc{NetworkX}}
+
+PPINs can be created from edge-lists, which are text files containing rows of the form ``$\text{ID}_A - \text{ID}_B$''. The latter correspond to distinctive labels of nodes which can also be used as reference  to other information sources. After loading an edge-file, \textsc{NetworkX} can initialise a graph with the provided edges.
+\subsection{Analysis \& Illustration of PPIN}
+
+\subsection{Centrality \& Important Proteins}
+By using PageRank, HITS and Degree Centrality we find that the five most ``central'' nodes are
+
+\begin{table}[h]%[tbhp]
+	\centering
+	\caption{Top-5 Central Proteins in \textit{Homo Sapiens}}
+	\begin{tabular}{cccl}
+		Node Label & Protein & Gene & Function \\
+		\midrule
+		114030 & Cullin-3 & CUL3 & This protein plays a critical role in the polyubiquitination and subsequent degradation of specific protein substrates \\
+		113164 & HMG20 &  UBC & It plays a key role in maintaining cellular ubiquitin levels under stress. Defects could lead to embryonic lethality. \\
+		108309 & HuR & ELAVL1 & RNA-binding protein that binds to the 3'-UTR region of mRNAs and increases their stability \\
+		113348 & Exportin-1 & XPO1 &  eukaryotic protein that mediates the nuclear export of proteins, rRNA, snRNA, and some mRNA. \\
+		113010 & TP53 & TP53 & tumor suppressor protein containing transcriptional activation, DNA binding, and oligomerization domains.  \\
+		\bottomrule
+		\label{tab:central}
+	\end{tabular}
+\end{table}
+
+%\[ 114030,\ 113164,\ 108309,\ 113348,\ 113010. \]
+\subsection{Opt: Computational Complexity}
+
+\subsection{Opt: The Development of PPINs} 

@@ -1,19 +1,17 @@
 \begin{thebibliography}{1}
 
-\bibitem{belkin2002using}
-Belkin M, Niyogi P (2002) Using manifold stucture for partially labeled
-  classification in {\em Advances in neural information processing systems}.
-\newblock pp. 929--936.
+\bibitem{strogatz2001exploring}
+Strogatz SH (2001) Exploring complex networks.
+\newblock {\em nature} 410(6825):268.
 
-\bibitem{berard1994embedding}
-B{\'e}rard P, Besson G, Gallot S (1994) Embedding riemannian manifolds by their
-  heat kernel.
-\newblock {\em Geometric \& Functional Analysis GAFA} 4(4):373--398.
+\bibitem{PPINtrain}
+Institute EB (year?) Network analysis of protein interaction data: an
+  introduction
+  (\url{https://www.ebi.ac.uk/training/online/course/network-analysis-protein-interaction-data-introduction}).
+\newblock Accessed: 2018-10-31.
 
-\bibitem{coifman2005geometric}
-Coifman RR, et~al. (2005) Geometric diffusions as a tool for harmonic analysis
-  and structure definition of data: Diffusion maps.
-\newblock {\em Proceedings of the National Academy of Sciences of the United
-  States of America} 102(21):7426--7431.
+\bibitem{barabasi2003scale}
+Barab{\'a}si AL, Bonabeau E (2003) Scale-free networks.
+\newblock {\em Scientific american} 288(5):60--69.
 
 \end{thebibliography}

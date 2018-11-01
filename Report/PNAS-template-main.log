@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018/W32TeX) (preloaded format=pdflatex 2018.10.6)  29 OCT 2018 13:41
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018/W32TeX) (preloaded format=pdflatex 2018.10.6)  1 NOV 2018 02:29
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -9,8 +9,8 @@ LaTeX2e <2018-04-01> patch level 5
 Document Class: pnas-new 2018/05/06, v1.44
 (c:/texlive/2018/texmf-dist/tex/latex/extsizes/extarticle.cls
 Document Class: extarticle 1996/10/08 v1.0 Non Standard LaTeX document class
-(c:/texlive/2018/texmf-dist/tex/latex/extsizes/size9.clo
-File: size9.clo 1999/11/11 v1.4a NON-Standard LaTeX file (size option)
+(c:/texlive/2018/texmf-dist/tex/latex/base/size10.clo
+File: size10.clo 2014/09/29 v1.4h Standard LaTeX file (size option)
 )
 (c:/texlive/2018/texmf-dist/tex/latex/base/exscale.sty
 Package: exscale 2014/09/29 v2.1h Standard LaTeX package exscale
@@ -1470,12 +1470,12 @@ LaTeX Info: Redefining \nameref on input line 42.
 * \topmargin=-24.75313pt
 * \headheight=0.0pt
 * \headsep=10.0pt
-* \topskip=9.0pt
+* \topskip=10.0pt
 * \footskip=25.0pt
 * \marginparwidth=38.0pt
-* \marginparsep=10.0pt
+* \marginparsep=11.0pt
 * \columnsep=13.5pt
-* \skip\footins=8.0pt plus 4.0pt minus 2.0pt
+* \skip\footins=9.0pt plus 4.0pt minus 2.0pt
 * \hoffset=0.0pt
 * \voffset=0.0pt
 * \mag=1000
@@ -1545,11 +1545,15 @@ LaTeX Font Info:    Try loading font information for T1+phv on input line 44.
 File: t1phv.fd 2001/06/04 scalable font definitions for T1/phv.
 )
 LaTeX Font Info:    Font shape `T1/phv/m/n' will be
-(Font)              scaled to size 8.54997pt on input line 44.
+(Font)              scaled to size 9.49997pt on input line 44.
 Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `phv' (encoding: T1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
+LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <10> not available
+(Font)              Font shape `T1/phv/b/n' tried instead on input line 44.
+LaTeX Font Info:    Font shape `T1/phv/b/n' will be
+(Font)              scaled to size 9.49997pt on input line 44.
 LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <9> not available
 (Font)              Font shape `T1/phv/b/n' tried instead on input line 44.
 LaTeX Font Info:    Font shape `T1/phv/b/n' will be
@@ -1603,6 +1607,8 @@ LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <6> not available
 LaTeX Font Info:    Font shape `T1/phv/b/n' will be
 (Font)              scaled to size 5.69998pt on input line 44.
 LaTeX Font Info:    Font shape `T1/phv/m/n' will be
+(Font)              scaled to size 8.54997pt on input line 44.
+LaTeX Font Info:    Font shape `T1/phv/m/n' will be
 (Font)              scaled to size 6.64998pt on input line 44.
 LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <7> on input line 44.
@@ -1612,98 +1618,56 @@ LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <8> not available
 (Font)              Font shape `T1/phv/b/n' tried instead on input line 44.
 LaTeX Font Info:    Font shape `T1/phv/b/n' will be
 (Font)              scaled to size 7.59998pt on input line 44.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <10> on input line 44.
 Package mdframed Info: mdframed works in twoside mode on input line 44.
 LaTeX Font Info:    Font shape `T1/phv/m/n' will be
-(Font)              scaled to size 9.49997pt on input line 44.
-LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <10> not available
+(Font)              scaled to size 11.39996pt on input line 44.
+LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <12> not available
 (Font)              Font shape `T1/phv/b/n' tried instead on input line 44.
 LaTeX Font Info:    Font shape `T1/phv/b/n' will be
-(Font)              scaled to size 9.49997pt on input line 44.
+(Font)              scaled to size 11.39996pt on input line 44.
 Package mdframed Info: mdframed inside float 
  mdframed uses option nobreak mdframed on input line 44.
 Package mdframed Info: mdframed inside a box 
  mdframed uses option nobreak mdframed on input line 44.
-LaTeX Font Info:    Font shape `T1/phv/m/n' will be
-(Font)              scaled to size 5.69998pt on input line 44.
-Package microtype Info: Character `029' is missing
-(microtype)             in font `T1/lmr/m/sc/9'.
-(microtype)             Ignoring protrusion settings for this character.
-Package lettrine.sty Info: Targeted height = 15.69254pt
-(lettrine.sty)             (no accent, loversize=0),
-(lettrine.sty)             Lettrine height = 18.05571pt ({\fontfamily {lmss}\bf
-series \fontsize {26pt}{28pt}\selectfont {T}});
-(lettrine.sty)             reported on input line 49.
-Package epstopdf Info: Source file: <frog.eps>
-(epstopdf)                    date: 2018-10-29 11:18:24
-(epstopdf)                    size: 45880 bytes
-(epstopdf)             Output file: <frog-eps-converted-to.pdf>
-(epstopdf)                    date: 2018-10-29 11:18:58
-(epstopdf)                    size: 29506 bytes
-(epstopdf)             Command: <repstopdf --outfile=frog-eps-converted-to.pdf 
-frog.eps>
-(epstopdf)             \includegraphics on input line 82.
-Package epstopdf Info: Output file is already uptodate.
-<frog-eps-converted-to.pdf, id=11, 749.80125pt x 742.775pt>
-File: frog-eps-converted-to.pdf Graphic file (type pdf)
-<use frog-eps-converted-to.pdf>
-Package pdftex.def Info: frog-eps-converted-to.pdf  used on input line 82.
-(pdftex.def)             Requested size: 252.84686pt x 250.4774pt.
 LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <7> not available
-(Font)              Font shape `T1/phv/b/n' tried instead on input line 83.
+(Font)              Font shape `T1/phv/b/n' tried instead on input line 61.
 LaTeX Font Info:    Font shape `T1/phv/b/n' will be
-(Font)              scaled to size 6.64998pt on input line 83.
-Package epstopdf Info: Source file: <frog.eps>
-(epstopdf)                    date: 2018-10-29 11:18:24
-(epstopdf)                    size: 45880 bytes
-(epstopdf)             Output file: <frog-eps-converted-to.pdf>
-(epstopdf)                    date: 2018-10-29 11:18:58
-(epstopdf)                    size: 29506 bytes
-(epstopdf)             Command: <repstopdf --outfile=frog-eps-converted-to.pdf 
-frog.eps>
-(epstopdf)             \includegraphics on input line 90.
-Package epstopdf Info: Output file is already uptodate.
-File: frog-eps-converted-to.pdf Graphic file (type pdf)
-<use frog-eps-converted-to.pdf>
-Package pdftex.def Info: frog-eps-converted-to.pdf  used on input line 90.
-(pdftex.def)             Requested size: 324.36467pt x 324.36256pt.
-
-endSC@dblfloat: \@tempdima=505.69374pt
-LaTeX Font Info:    Try loading font information for T1+lmtt on input line 98.
-(c:/texlive/2018/texmf-dist/tex/latex/lm/t1lmtt.fd
-File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
-)
-Package microtype Info: Loading generic protrusion settings for font family
-(microtype)             `lmtt' (encoding: T1).
-(microtype)             For optimal results, create family-specific settings.
-(microtype)             See the microtype manual for details.
-LaTeX Font Info:    Font shape `T1/phv/m/n' will be
-(Font)              scaled to size 7.59998pt on input line 104.
-LaTeX Font Info:    Font shape `T1/phv/m/n' will be
-(Font)              scaled to size 7.12497pt on input line 105.
-LaTeX Font Info:    Calculating math sizes for size <7.5> on input line 105.
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7.5> on input line 105.
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5.24997> on input line 105.
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <3.75> on input line 105.
+(Font)              scaled to size 6.64998pt on input line 61.
  [1
 
 
-{c:/texlive/2018/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-LaTeX Font Info:    Font shape `T1/phv/m/it' in size <7> not available
-(Font)              Font shape `T1/phv/m/sl' tried instead on input line 121.
-LaTeX Font Info:    Font shape `T1/phv/m/sl' will be
-(Font)              scaled to size 6.64998pt on input line 121.
- [2 <./frog-eps-converted-to.pdf>]
-LaTeX Font Info:    Font shape `T1/phv/bx/it' in size <8> not available
-(Font)              Font shape `T1/phv/b/it' tried instead on input line 128.
-LaTeX Font Info:    Font shape `T1/phv/b/it' in size <8> not available
-(Font)              Font shape `T1/phv/b/sl' tried instead on input line 128.
+{c:/texlive/2018/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] (./Task1.tex
+Package microtype Info: Character `029' is missing
+(microtype)             in font `T1/lmr/m/sc/10'.
+(microtype)             Ignoring protrusion settings for this character.
+LaTeX Font Info:    Font shape `T1/phv/bx/sc' in size <10> not available
+(Font)              Font shape `T1/phv/b/sc' tried instead on input line 4.
+LaTeX Font Info:    Font shape `T1/phv/b/sc' will be
+(Font)              scaled to size 9.49997pt on input line 4.
+LaTeX Font Info:    Font shape `T1/phv/bx/it' in size <9> not available
+(Font)              Font shape `T1/phv/b/it' tried instead on input line 14.
+LaTeX Font Info:    Font shape `T1/phv/b/it' in size <9> not available
+(Font)              Font shape `T1/phv/b/sl' tried instead on input line 14.
 LaTeX Font Info:    Font shape `T1/phv/b/sl' will be
-(Font)              scaled to size 7.59998pt on input line 128.
+(Font)              scaled to size 8.54997pt on input line 14.
+LaTeX Font Info:    Font shape `T1/phv/m/n' will be
+(Font)              scaled to size 7.12497pt on input line 15.
+LaTeX Font Info:    Calculating math sizes for size <7.5> on input line 15.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <7.5> on input line 15.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <5.24997> on input line 15.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <3.75> on input line 15.
+) (./Task2.tex)
+LaTeX Font Info:    Font shape `T1/phv/m/it' in size <7> not available
+(Font)              Font shape `T1/phv/m/sl' tried instead on input line 79.
+LaTeX Font Info:    Font shape `T1/phv/m/sl' will be
+(Font)              scaled to size 6.64998pt on input line 79.
 
-[3]
+[2] (./Task3.tex) [3]
 \openout2 = `PPIN_Latex_Table.aux'.
 
  (./PPIN_Latex_Table.tex
@@ -1713,9 +1677,11 @@ LaTeX Font Info:    Font shape `T1/phv/b/n' will be
 (Font)              scaled to size 7.12497pt on input line 9.
 
 
-LaTeX Warning: Float too large for page by 28.56375pt on input line 83.
+LaTeX Warning: Float too large for page by 30.56375pt on input line 83.
 
 ) [4] (./PNAS-template-main.bbl
+LaTeX Font Info:    Font shape `T1/phv/m/n' will be
+(Font)              scaled to size 5.69998pt on input line 1.
 LaTeX Font Info:    Font shape `T1/phv/m/it' in size <6> not available
 (Font)              Font shape `T1/phv/m/sl' tried instead on input line 5.
 LaTeX Font Info:    Font shape `T1/phv/m/sl' will be
@@ -1726,41 +1692,47 @@ AED: lastpage setting LastPage
 
 
 ]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 149.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 149.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 134.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 134.
  (./PNAS-template-main.aux (./PPIN_Latex_Table.aux))
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 149.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 149.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 134.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 134.
 Package rerunfilecheck Info: File `PNAS-template-main.out' has not changed.
-(rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 149.
+(rerunfilecheck)             Checksum: 64D80A6D9A97F700095A6A4002934FA6;1058.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 134.
  ) 
 Here is how much of TeX's memory you used:
- 33949 strings out of 492639
- 622610 string characters out of 6133088
- 745243 words of memory out of 5000000
+ 33968 strings out of 492639
+ 622850 string characters out of 6133088
+ 745216 words of memory out of 5000000
  37133 multiletter control sequences out of 15000+600000
- 641614 words of font info for 150 fonts, out of 8000000 for 9000
+ 663908 words of font info for 163 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 62i,12n,73p,786b,1104s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 62i,12n,73p,808b,1104s stack positions out of 5000i,500n,10000p,200000b,80000s
 {c:/texlive/2018/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{c:/texlive/2018/tex
 mf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{c:/texlive/2018/texmf-dist/fonts/enc/
 dvips/lm/lm-ec.enc}{c:/texlive/2018/texmf-dist/fonts/enc/dvips/base/8r.enc}{c:/
-texlive/2018/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}<c:/texlive/2018/texmf
--dist/fonts/type1/public/lm/lmmi8.pfb><c:/texlive/2018/texmf-dist/fonts/type1/p
-ublic/lm/lmr5.pfb><c:/texlive/2018/texmf-dist/fonts/type1/public/lm/lmr6.pfb><c
-:/texlive/2018/texmf-dist/fonts/type1/public/lm/lmr7.pfb><c:/texlive/2018/texmf
--dist/fonts/type1/public/lm/lmr8.pfb><c:/texlive/2018/texmf-dist/fonts/type1/pu
-blic/lm/lmr9.pfb><c:/texlive/2018/texmf-dist/fonts/type1/public/lm/lmssbx10.pfb
-><c:/texlive/2018/texmf-dist/fonts/type1/public/lm/lmsy7.pfb><c:/texlive/2018/t
-exmf-dist/fonts/type1/public/lm/lmtt9.pfb><c:/texlive/2018/texmf-dist/fonts/typ
-e1/urw/helvetic/uhvb8a.pfb><c:/texlive/2018/texmf-dist/fonts/type1/urw/helvetic
-/uhvbo8a.pfb><c:/texlive/2018/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb><c
-:/texlive/2018/texmf-dist/fonts/type1/urw/helvetic/uhvro8a.pfb>
-Output written on PNAS-template-main.pdf (5 pages, 252534 bytes).
+texlive/2018/texmf-dist/fonts/enc/dvips/lm/lm-mathex.enc}{c:/texlive/2018/texmf
+-dist/fonts/enc/dvips/lm/lm-mathsy.enc}<c:/texlive/2018/texmf-dist/fonts/type1/
+public/lm/lmbx10.pfb><c:/texlive/2018/texmf-dist/fonts/type1/public/lm/lmcsc10.
+pfb><c:/texlive/2018/texmf-dist/fonts/type1/public/lm/lmex10.pfb><c:/texlive/20
+18/texmf-dist/fonts/type1/public/lm/lmmi10.pfb><c:/texlive/2018/texmf-dist/font
+s/type1/public/lm/lmmi7.pfb><c:/texlive/2018/texmf-dist/fonts/type1/public/lm/l
+mmi8.pfb><c:/texlive/2018/texmf-dist/fonts/type1/public/lm/lmr10.pfb><c:/texliv
+e/2018/texmf-dist/fonts/type1/public/lm/lmr5.pfb><c:/texlive/2018/texmf-dist/fo
+nts/type1/public/lm/lmr6.pfb><c:/texlive/2018/texmf-dist/fonts/type1/public/lm/
+lmr7.pfb><c:/texlive/2018/texmf-dist/fonts/type1/public/lm/lmr8.pfb><c:/texlive
+/2018/texmf-dist/fonts/type1/public/lm/lmr9.pfb><c:/texlive/2018/texmf-dist/fon
+ts/type1/public/lm/lmssbx10.pfb><c:/texlive/2018/texmf-dist/fonts/type1/public/
+lm/lmsy10.pfb><c:/texlive/2018/texmf-dist/fonts/type1/public/lm/lmsy7.pfb><c:/t
+exlive/2018/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb><c:/texlive/2018/tex
+mf-dist/fonts/type1/urw/helvetic/uhvbo8a.pfb><c:/texlive/2018/texmf-dist/fonts/
+type1/urw/helvetic/uhvr8a.pfb><c:/texlive/2018/texmf-dist/fonts/type1/urw/helve
+tic/uhvro8a.pfb>
+Output written on PNAS-template-main.pdf (5 pages, 282989 bytes).
 PDF statistics:
- 115 PDF objects out of 1000 (max. 8388607)
- 92 compressed objects within 1 object stream
- 13 named destinations out of 1000 (max. 500000)
- 41490 words of extra memory for PDF output out of 42996 (max. 10000000)
+ 195 PDF objects out of 1000 (max. 8388607)
+ 167 compressed objects within 2 object streams
+ 25 named destinations out of 1000 (max. 500000)
+ 37501 words of extra memory for PDF output out of 42996 (max. 10000000)
 

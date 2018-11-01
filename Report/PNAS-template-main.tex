@@ -1,4 +1,4 @@
-\documentclass[9pt,twoside]{pnas-new}
+\documentclass[10pt,twoside]{pnas-new}
 % Use the lineno option to display guide line numbers if required.
 
 \templatetype{pnasmathematics} % Choose template 
@@ -30,7 +30,7 @@
 %\correspondingauthor{\textsuperscript{2}To whom correspondence should be addressed. E-mail: author.two\@email.com}
 
 % Keywords are not mandatory, but authors are strongly encouraged to provide them. If provided, please include two to five keywords, separated by the pipe symbol, e.g:
-\keywords{Keyword 1 $|$ Keyword 2 $|$ Keyword 3 $|$ ...} 
+\keywords{PPIN $|$ NetworkX $|$ BioGrid $|$ Network Science $|$ Centrality Measures} 
 
 \begin{abstract}
 Please provide an abstract of no more than 250 words in a single paragraph. Abstracts should explain to the general reader the major contributions of the article. References in the abstract must be cited in full within the abstract itself and cited in the text.
@@ -45,48 +45,51 @@ Please provide an abstract of no more than 250 words in a single paragraph. Abst
 \thispagestyle{firststyle}
 \ifthenelse{\boolean{shortarticle}}{\ifthenelse{\boolean{singlecolumn}}{\abscontentformatted}{\abscontent}}{}
 
-% If your first paragraph (i.e. with the \dropcap) contains a list environment (quote, quotation, theorem, definition, enumerate, itemize...), the line after the list may have some extra indentation. If this is the case, add \parshape=0 to the end of the list environment.
-\dropcap{T}his PNAS journal template is provided for authors to use when writing a mathematics article in a single column format. Instructions are provided below.
+\section{Introduction \& Prerequisites}
+Networks are representations of real systems where individual units are modelled as nodes and interactions between these units as links. Formally speaking, this corresponds to a graph $\mathcal{G} = (\mathcal{V},\mathcal{E})$, with $\mathcal{V}$ and $\mathcal{E}$ standing for the set of nodes and edges respectively. However, nodes can be anything, ranging from regions of the human brain to electrical power plants. As a result, the study of networks pervades all of science, from neurobiology to statistical physics~\cite{strogatz2001exploring}.  
+
+The set of nodes $\mathcal{V}$ has usually a finite number of elements. Links can be undirected or directed, unweighted or weighted. When dealing with undirected edges, a link can be defined as a pair of nodes $(u,v)$; in directed graphs $(u,v)$ and $(v,u)$ correspond to different edges. In the case of weighted networks, links are also assigned with a real number characterising the importance of the association.
+
+There are two main ways for representing networks, namely lists and adjacency matrices. Let $\mathbf{A}$ be the adjacency matrix of graph  $\mathcal{G}$ containing $n$ nodes. Then $\mathbf{A}$ is of size $n\times n$ and element $A_{ij}$ is $1$ if nodes $i,j$ are connected, otherwise, $A_{ij}=0$. In weighted networks non-zero elements of $\mathbf{A}$ are equal to the weights of edges. Moreover, real complex networks, although might contain thousands of nodes, are usually sparse in regards of edges and can be represented by sparse matrices which are special data structures.
+
+After defining nodes and edges, the next important term is that of node-degree. The degree $k_i$ of node $i$ is defined as the number of edges linked to $i$. In directed graphs, the degree of a node might be discriminated in in-degree and out-degree, depending on whether the edges ending to or start from $i$ are counted. For undirected networks, the degree can be computed by
+\[ k_i = \sum_{j=1}^{n}A_{ij} = \mathbf{e}_i^\top ( \mathbf{A} \cdot \mathbf{e} ), \]
+where  $\mathbf{e}$ stands for a column-vector full of ones and $\mathbf{e}_i$ has zeros everywhere except element $i$ which is one. In other words, the product $ \mathbf{A} \cdot \mathbf{e} $ gives the degree for every node. These are some simple indicators showing why adjacency matrices are important: they connect Network Science with Linear Algebra.
+
+Graphs are very attractive tools to biological and medical research applications, since they can use for description of many mechanisms or interactions, for instance metabolic or cell signalling networks. Another important direction are the so-called Protein-Protein Interaction Networks (which will be denoted as PPIN), which represent physical contacts between proteins within a cell. In brief, 
+proteins are macromolecules, consisting of one or more long chains of amino acid residues, which perform a vast array of functions within organisms, including catalysing metabolic reactions, DNA replication, responding to stimuli, providing structure to cells and organisms, and transporting molecules from one location to another. Usually, the aforementioned procedures incorporate the cascade of many proteins, resulting in networks of interactions.
+
+PPINs are characterised by three notable properties. First of all, PPINs show a small world effect meaning that there is great connectivity between proteins. More typically, the diameter (the maximum number of steps separating any two nodes) of such networks is small, regardless the number of nodes or edges. Such strong connectivity has important biological consequences, since it allows for an efficient and quick flow of signals within the network~\cite{PPINtrain}.
+
+Moreover, PPINs are scale-free. This class of networks can describe a variety of complex systems where some nodes have a tremendous number edges (hubs), whereas most nodes have only a few~\cite{barabasi2003scale}. In this sense, the network appears to have no scale which provides important features. For instance, scale-free networks are very robust and stable since small perturbations have low effect. Furthermore, hubs in cancer-linked networks could be used for targeted attacks in drug discovery.
+
+Finally, another crucial characteristic of PPINs is their modularity. The transitivity or clustering coefficient of a network is a measure of the tendency of the nodes to cluster together. High transitivity means that the network contains communities or groups of nodes that are densely connected internally. Generally speaking, structure always affects function~\cite{strogatz2001exploring}. In biological networks particularly, finding these communities is very important, because they can reflect functional modules and protein complexes.
+
+However, PPINs are not real but correspond to actual biological networks and occur after experimental procedures. As a result, data might contain noise and some observations can be less reliable since the record of molecular interactions is occasionally incomplete or patchy.
+
+\section{Construction of PPIN and Analysis}
+\input{Task1}
+
+\section{Computing the Topological Fractal Dimension}
+\input{Task2}
+\subsection{The Box Counting Method}
+
+\subsection{Implementation}
+
+\subsection{Computational Complexity}
+
+\section{TFD of PPIN \& Conclusions}
+\input{Task3}
+\subsection{Dynamic changes of TFD \& Interaction with other Databases}
+
+\subsection{Conclusions}
 
 
-
-\subsection*{Centrality in PPINs}
-By using PageRank, HITS and Degree Centrality we find that the five most ``central'' nodes are
-
-\begin{table}%[tbhp]
-\centering
-\caption{Top-5 Central Proteins in \textit{Homo Sapiens}}
-\begin{tabular}{cccl}
-Node Label & Protein & Gene & Function \\
-\midrule
-114030 & Cullin-3 & CUL3 & The encoded protein plays a critical role in the polyubiquitination and subsequent degradation of specific protein substrates \\
-113164 & HMG20 &  UBC & It plays a key role in maintaining cellular ubiquitin levels under stress. Defects could lead to embryonic lethality. \\
-108309 & HuR & ELAVL1 & RNA-binding protein that binds to the 3'-UTR region of mRNAs and increases their stability \\
-113348 & Exportin-1 & XPO1 &  eukaryotic protein that mediates the nuclear export of proteins, rRNA, snRNA, and some mRNA. \\
-113010 & TP53 & TP53 & tumor suppressor protein containing transcriptional activation, DNA binding, and oligomerization domains.  \\
-\bottomrule
-\label{tab:central}
-\end{tabular}
-\end{table}
-
-%\[ 114030,\ 113164,\ 108309,\ 113348,\ 113010. \]
-These nodes correspond to proteines
-
-\subsection*{Submitting Manuscripts}
-
-All authors must submit their articles at \href{http://www.pnascentral.org/cgi-bin/main.plex}{PNAScentral}. If you are using Overleaf to write your article, you can use the ``Submit to PNAS'' option in the top bar of the editor window. 
-
-\subsection*{Format}
-
-Please be sure to include: Title, Author Affiliations, Keywords, Abstract, Significance, Statement, Acknowledgments, and References. Other sections and headings are permitted as need.
 
 \subsection*{Manuscript Length}
 
 The maximum length of a Direct Submission research article is six pages and a Direct Submission Plus research article is ten pages including all text, spaces, and the number of characters displaced by figures, tables, and equations.  When submitting tables, figures, and/or equations in addition to text, keep the text for your manuscript under 39,000 characters (including spaces) for Direct Submissions and 72,000 characters (including spaces) for Direct Submission Plus.
 
-\subsection*{References}
-
-References should be cited in numerical order as they appear in text; this will be done automatically via bibtex, e.g. \cite{belkin2002using} and \cite{berard1994embedding,coifman2005geometric}. All references should be included in the main manuscript file. 
 
 \subsection*{Data Archival}
 
@@ -95,47 +98,23 @@ PNAS must be able to archive the data essential to a published article. Where su
 \subsection*{Language-Editing Services}
 Prior to submission, authors who believe their manuscripts would benefit from professional editing are encouraged to use a language-editing service (see list at www.pnas.org/site/authors/language-editing.xhtml). PNAS does not take responsibility for or endorse these services, and their use has no bearing on acceptance of a manuscript for publication. 
 
-\begin{figure}%[tbhp]
-\centering
-\includegraphics[width=.5\linewidth]{frog}
-\caption{Placeholder image of a frog with an example caption.}
-\label{fig:frog}
-\end{figure}
+%\begin{figure}%[tbhp]
+%\centering
+%\includegraphics[width=.5\linewidth]{frog}
+%\caption{Placeholder image of a frog with an example caption.}
+%\label{fig:frog}
+%\end{figure}
 
 
-\begin{SCfigure*}[\sidecaptionrelwidth][t]
-\centering
-\includegraphics[width=11.4cm,height=11.4cm]{frog}
-\caption{This caption would be placed at the side of the figure, rather than below it.}\label{fig:side}
-\end{SCfigure*}
+%\begin{SCfigure*}[\sidecaptionrelwidth][t]
+%\centering
+%\includegraphics[width=11.4cm,height=11.4cm]{frog}
+%\caption{This caption would be placed at the side of the figure, rather than below it.}\label{fig:side}
+%\end{SCfigure*}
 
 
-\subsection*{Digital Figures}
-Only TIFF, EPS, and high-resolution PDF for Mac or PC are allowed for figures that will appear in the main text, and images must be final size. Authors may submit U3D or PRC files for 3D images; these must be accompanied by 2D representations in TIFF, EPS, or high-resolution PDF format.  Color images must be in RGB (red, green, blue) mode. Include the font files for any text. 
-
-Figures and Tables should be labelled and referenced in the standard way using the \verb|\label{}| and \verb|\ref{}| commands.
-
-Figure \ref{fig:frog} and Table \ref{tab:energy} show examples of how to insert figures and tables respectively.
-
-\begin{table}%[tbhp]
-\centering
-\caption{Comparison of the fitted potential energy surfaces and ab initio benchmark electronic energy calculations}
-\begin{tabular}{lrrr}
-Species & CBS & CV & G3 \\
-\midrule
-1. Acetaldehyde & 0.0 & 0.0 & 0.0 \\
-2. Vinyl alcohol & 9.1 & 9.6 & 13.5 \\
-3. Hydroxyethylidene & 50.8 & 51.2 & 54.0\\
-\bottomrule
-\end{tabular}
-
-\addtabletext{nomenclature for the TSs refers to the numbered species in the table.}
-\label{tab:energy}
-\end{table}
-
-
-\subsection*{Tables}
-In addition to including your tables within this manuscript file, PNAS requires that each table be uploaded to the submission separately as a “Table” file.  Please ensure that each table .tex file contains a preamble, the \verb|\begin{document}| command, and the \verb|\end{document}| command. This is necessary so that the submission system can convert each file to PDF.
+%\subsection*{Digital Figures}
+%Only TIFF, EPS, and high-resolution PDF for Mac or PC are allowed for figures that will appear in the main text, and images must be final size. Authors may submit U3D or PRC files for 3D images; these must be accompanied by 2D representations in TIFF, EPS, or high-resolution PDF format.  Color images must be in RGB (red, green, blue) mode. Include the font files for any text. 
 
 \subsection*{Supporting Information (SI)}
 
@@ -143,25 +122,13 @@ Authors should submit SI as a single separate PDF file, combining all text, figu
 
 Authors who place detailed materials and methods in an SI Appendix must provide sufficient detail in the main text methods to enable a reader to follow the logic of the procedures and results and also must reference the SI methods. If a paper is fundamentally a study of a new method or technique, then the methods must be described completely in the main text.
 
-\subsubsection*{SI Datasets} 
 
-Supply Excel (.xls), RTF, or PDF files. This file type will be published in raw format and will not be edited or composed.
-
-
-\subsubsection*{SI Movies}
-
-Supply Audio Video Interleave (avi), Quicktime (mov), Windows Media (wmv), animated GIF (gif), or MPEG files and submit a brief legend for each movie in a Word or RTF file. All movies should be submitted at the desired reproduction size and length. Movies should be no more than 10 MB in size.
-
-
-\subsubsection*{3D Figures}
-
-Supply a composable U3D or PRC file so that it may be edited and composed. Authors may submit a PDF file but please note it will be published in raw format and will not be edited or composed.
 
 \acknow{Please include your acknowledgments here, set in a single paragraph. Please do not include any acknowledgments in the Supporting Information, or anywhere else in the manuscript.}
 
 \showacknow % Display the acknowledgements section
 \include{PPIN_Latex_Table}
 % Bibliography
-\bibliography{pnas-sample}
+\bibliography{PPIN-TFD_Literature}
 
 \end{document}
