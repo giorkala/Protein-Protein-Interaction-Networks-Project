@@ -28,13 +28,13 @@ filetab2 = 'sample.txt'
 data = pd.read_csv(filetab2, delimiter='\t')
 
 # We select the columns of BIOGRID IDs only
-# 0: interaction ID, 3: Interactor A, 4: Interactor B 
+# 0: interaction ID, 3: Interactor A, 4: Interactor B
 # 7,8: Official symbols - to be saved separately
 ColumnsToKeep = [ list(data)[c] for c in [0,3,4,7,8] ]
 ColumnsToDrop =  set(list(data)) - set(ColumnsToKeep)
 for col in ColumnsToDrop:
     data = data.drop( col , axis = 1 )
-    
+
 # extract official symbols to a separate file
 f1 = open('official_symbols.csv','w')
 f2 = open('edge_list.txt','w')
@@ -59,4 +59,38 @@ G.add_edges_from( (data.values)[:,[1,2]] )
 plt.show()
 nx.draw_circular(G)
 #plt.savefig('example123.pdf')
+####################
+## Nonsense stuff ##
+####################
+"""
+# load all the file as a data frame
+data = pd.read_csv(filetab2, delimiter='\t')
 
+# We select the columns of BIOGRID IDs only - erase others to save memory
+# 0: interaction ID, 3: Interactor A, 4: Interactor B
+# 7,8: Official symbols - to be saved separately
+ColumnsToKeep = [ list(data)[c] for c in [0,3,4,7,8] ]
+ColumnsToDrop =  set(list(data)) - set(ColumnsToKeep)
+for col in ColumnsToDrop:
+    data = data.drop( col , axis = 1 )
+
+# how to read from "edgelist" files whereas nodes are seperated by commas.
+edgelist = pd.read_csv(datafile, delimiter=',')
+G = nx.Graph()
+G.add_edges_from( (edgelist.values) )
+
+M = G.number_of_edges()
+N = G.number_of_nodes()
+print("There are {0} nodes and {1} edges in the graph.".format(M,N) )
+nx.draw(G,node_size=10, pos=nx.spring_layout(G))
+
+    distmat = open(FileToLoad, 'r')
+    nRows = sum(1 for line in distmat)
+    new = scipy.sparse.csr_matrix( [ nRows,nRows ], dtype=np.int8 ).toarray()
+    for line in distmat:
+        table[line,:] = [int(num) for num in line.split()]
+    #table = [[int(num) for num in line.split()] for line in distmat ]
+    distmat.close()
+    np.save(organism+'-array', table)
+
+"""

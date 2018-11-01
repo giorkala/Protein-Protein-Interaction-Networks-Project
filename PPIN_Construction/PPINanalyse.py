@@ -11,7 +11,7 @@ import networkx as nx
 import matplotlib.pyplot as plt
 #from NetworkXmore import read_edgelist
 from createPPIN import createAdjMatrix, ChangeNames
-import os, csv, operator
+import os, csv, operator, collections
 #import pandas as pd
 
 #filetab2 = "BioGrid files/BIOGRID-ORGANISM-Human_Herpesvirus_6A-3.5.165.tab2.txt"
@@ -20,7 +20,7 @@ import os, csv, operator
 
 datafile = "Dictionaries/edge.egdelist"
 datafile = "EdgeLists/BIOGRID-ORGANISM-Homo_sapiens-3.5.165.edgelist"
-#datafile = "EdgeLists/BIOGRID-ORGANISM-Human_Immunodeficiency_Virus_1-3.5.165.edgelist"
+datafile = "EdgeLists/BIOGRID-ORGANISM-Human_Immunodeficiency_Virus_1-3.5.165.edgelist"
 #datafile = "EdgeLists/BIOGRID-ORGANISM-Escherichia_coli_K12_W3110-3.5.165.edgelist"
 
 # Get the name:
@@ -47,14 +47,40 @@ M = G.number_of_edges()
 N = G.number_of_nodes()
 print("\nThere are {0} nodes and {1} edges in the graph of \n{2}\n".format(N, M, name) )
 #S = createAdjMatrix( G, "Sample" )
+###############
+## Visualise ##
+###############
+    # Visualize graph
+    # first, take a 2D array from dataframe - these are numerics only
+    #G = nx.Graph()
+    #G.add_edges_from( data.values[:,[1,2] ] )
+    #plt.show()
+    #nx.draw_random(G)
+    #nx.draw(G,node_size=10, pos=nx.spring_layout(G))
+    #plt.savefig('Visuals/'+name+'graph.png')
+
+#########################
+## Degree Distribution ##
+#########################
+degs = dict( G.degree() )
+degrees = sorted( degs.values(), reverse=True )
+
+fig = plt.figure()
+plt.subplot(1,3,2)
+plt.plot(range(len(degrees)), degrees, 'ro') #,'b-'
+plt.subplot(1,3,1)
+plt.hist( degs.values(),bins=50, rwidth=0.6 ) #, cnt, width=0.80, color='b')
+plt.subplot(1,3,3)
+plt.loglog(range(len(degrees)), degrees, 'bo') #,'b-'
+#plt.title( "Log-Log Degree Distribution - {0}".format(name) )
+
+fig.savefig( "degree_distr-"+name+".png" )
+plt.show()
 
 ###########################
 ## Centrality estimation ##
 ###########################
-# max(stats.iteritems(), key=operator.itemgetter(1))[0]
-# instead of sorting and taking the 5 largest elements, we search for the largest
-# item five times, instead.
-
+"""
 # Select k for top-k showing
 topk = 15
 RankingMethods = {"Degree":"nx.degree_centrality(G)", "PageRank":"nx.algorithms.pagerank_scipy(G)"}
@@ -63,7 +89,7 @@ RankingMethods["HITS-Auth"] = "nx.algorithms.hits_scipy(G)[1]"
 #RankingMethods["Betweeness Centrality"] = "nx.betweenness_centrality(G)"
 #NotableNodes = np.zeros( [topk, 3] )
 Results = []
-case = 0
+
 for method in RankingMethods.keys():
     print( "Getting the {0} most central elements wrt {1}...".format( topk, method) )
     ranking = eval( RankingMethods[method] )
@@ -72,14 +98,13 @@ for method in RankingMethods.keys():
         print( sorted_dict[x] )
         #NotableNodes[ x , case ] = sorted_dict[x][0]
         Results.append( sorted_dict[x][0] )
-    #case += 1
 
 best = { x: Results.count(x) for x in set(Results) }
 best = sorted(best.items(), key=operator.itemgetter(1), reverse=True)
 print("The most frequent nodes are:")
 for x in range( 5 ):
     print( best[x][0] )
-
+"""
 """
 # 1. Degree Centrality
 print( "Getting the {0} most central elements wrt degree...".format(topk) )
@@ -160,29 +185,4 @@ for organism in allfiles:
     # nx.degree_centrality(G)).values()
     f.write("$ {0} $ & {1} & {2} & {3:.2f} & {4} & {5} \\\\ \n".format( shortname, N, M, np.mean(degrees), concomps, largest ))
 f.close()
-"""
-####################
-## Nonsense stuff ##
-####################
-"""
-# load all the file as a data frame
-data = pd.read_csv(filetab2, delimiter='\t')
-
-# We select the columns of BIOGRID IDs only - erase others to save memory
-# 0: interaction ID, 3: Interactor A, 4: Interactor B
-# 7,8: Official symbols - to be saved separately
-ColumnsToKeep = [ list(data)[c] for c in [0,3,4,7,8] ]
-ColumnsToDrop =  set(list(data)) - set(ColumnsToKeep)
-for col in ColumnsToDrop:
-    data = data.drop( col , axis = 1 )
-
-# how to read from "edgelist" files whereas nodes are seperated by commas.
-edgelist = pd.read_csv(datafile, delimiter=',')
-G = nx.Graph()
-G.add_edges_from( (edgelist.values) )
-
-M = G.number_of_edges()
-N = G.number_of_nodes()
-print("There are {0} nodes and {1} edges in the graph.".format(M,N) )
-nx.draw(G,node_size=10, pos=nx.spring_layout(G))
 """
