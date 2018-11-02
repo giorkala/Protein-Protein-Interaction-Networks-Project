@@ -28,52 +28,33 @@ def CreateEdgeList( pathtofile, name ):
     ColumnsToDrop =  set(list(data)) - set(ColumnsToKeep)
     for col in ColumnsToDrop:
         data = data.drop( col , axis = 1 )
+    #data.close()
 
     # Progress Check
     print("Data is parsed! Creating new files...")
-    # extract official symbols & edgelists to separate files
-    f1 = open('EdgeLists/'+name+'.edgelist','w')
-    f2 = open('OfficialSymbols/'+name+'.official_symbols.csv','w')
     C1 = list( (data.values)[:,1] )
     C2 = list( (data.values)[:,2] )
     C3 = list( (data.values)[:,3] )
     C4 = list( (data.values)[:,4] )
+    f1 = open('EdgeLists/'+name+'.edgelist','w')
+    f2 = open('OfficialSymbols/'+name+'.official_symbols.csv','w')
+    # In order to skip multiple copies of the same edge, we use
+    # Python's set structure
+    EdgeList = set()
     for x in range( len(data) ):
-        f1.write("{0} {1}\n".format( C1[x], C2[x] ))
-        f2.write("{0},{1}\n".format( C3[x], C4[x] ))
+        if C1[x] != C2[x]:
+            # in order to avoid self-loops and multiple edges,
+            # we consider only min(a,b) - max(a,b)
+            edge = "{0} {1}\n".format( min( C1[x], C2[x] ), max( C1[x], C2[x] ))
+            if edge not in EdgeList:
+                f1.write( edge ) # extract the edgelist
+                # Extract edge in the official symbols - these might be reversed!
+                f2.write("{0},{1}\n".format( C3[x], C4[x] ))
+                EdgeList.add( edge )
     f1.close()
     f2.close()
 
-    print("Job done: .edgelist, .official_symbols and visuals are all created!\n")
-
-def CreateAdjMatrix( edgelist , name ):
-    """
-    This function creates a sparse matrix with the adjacencies and saves it
-    as a *.npy file. <? Check if it needs scipy.sparse.save_npz() ?>
-    Inputs:
-        edgelist : path to file with the edge-list
-        name  : string with the name of the graph to save. It could be derived
-                from the path, but the function is more general this way.
-    Output:
-        *.npy file with csr array and
-    """
-    import numpy as np
-    import networkx as nx
-
-    G = nx.Graph()
-
-    if path.exists(edgelist):
-        #data = pd.read_csv(oldedgelist, delimiter=' ', header=None)
-        # OR
-        with open(edgelist, 'rb') as edgelist:
-            edge = csv.reader(edgelist, delimiter=' ')
-            G.add_edges_from( edge )
-        S = nx.to_scipy_sparse_matrix(Graph, format='csr')
-        np.save( Name + 'Adjmatrix.csr', S )
-        return S
-    else:
-        warnings.warn("File not found!")
-        return 0
+    print("Job done: .edgelist and .official_symbols have been created!\n")
 
 def ChangeLabels( oldedgelist, name ):
     """
@@ -83,18 +64,20 @@ def ChangeLabels( oldedgelist, name ):
     It also removes multiple copies of the same edge or self-loops. This is
     implemented by adding ony "min(a,b) - max(a,b)" for any (a,b) or (b,a) edge
     in a set data structure.
+    --> The last feature is un-necessary since the same job takes place in
+        function CreateEdgeList which preceeds.
+
     """
     #import pandas as pd
     # OR
-    import csv
+    import pandas as pd
     import networkx as nx
     import matplotlib.pyplot as plt
     import sys, warnings
 
     if path.exists(oldedgelist):
-        #data = pd.read_csv(oldedgelist, delimiter=' ', header=None)
-        # OR
-        data = open(oldedgelist, 'rb')
+        data = pd.read_csv(oldedgelist, delimiter=' ', header=None)
+
     else:
         warnings.warn("File not found!")
         return 0
@@ -132,6 +115,38 @@ def ChangeLabels( oldedgelist, name ):
 
     return Dict
 
+def CreateAdjMatrix( edgelist , name ):
+    """
+    This function creates a sparse matrix with the adjacencies and saves it
+    as a *.npy file. <? Check if it needs scipy.sparse.save_npz() ?>
+    Inputs:
+        edgelist : path to file with the edge-list
+        name  : string with the name of the graph to save. It could be derived
+                from the path, but the function is more general this way.
+    Output:
+        *.npy file with csr array and
+    """
+    import numpy as np
+    import networkx as nx
+    import csv
+    from scipy import sparse as ssp
+
+    G = nx.Graph()
+
+    if path.exists(edgelist):
+        #data = pd.read_csv(oldedgelist, delimiter=' ', header=None)
+        # OR
+        with open(edgelist, 'rb') as edgelist:
+            edge = csv.reader(edgelist, delimiter=' ')
+            G.add_edges_from( edge )
+        S = nx.to_scipy_sparse_matrix(G, format='csr')
+        np.save( 'AdjMatrices/'+ name + 'Adjmatrix.csr', S )
+        # the above might be problematic. save with SSP if possible:
+        #ssp.save_npz( 'AdjMatrices/'+ name + 'Adjmatrix.csr', S )
+        return S
+    else:
+        warnings.warn("File not found!")
+        return 0
 #if __name__ == '__main__':
 #return
     #pathtofile = sys.argv[-1]

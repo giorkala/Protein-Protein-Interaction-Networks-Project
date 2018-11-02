@@ -1,14 +1,12 @@
 """
 Script that parses all files from biogrid  dataset end does specific things for
 all cases, e.g. creating edgelists abd re-labeling graph-nodes.
+->The very first task to execute.
 """
 import os
-#import pandas as pd
 from PPINutils  import CreateEdgeList, ChangeLabels, CreateAdjMatrix
 
-
-InitialFolder = "/auto/dtchome/kalantzisg/Downloads/Programming_Project/BIOGRID-ORGANISM-3.5.165.tab2/"
-#EdgeLists = "/auto/dtchome/kalantzisg/Downloads/Programming_Project/"
+InitialFolder = "/auto/dtchome/kalantzisg/Downloads/BIOGRID-ORGANISM-3.5.165.tab2/"
 
 allfiles = os.listdir( InitialFolder )
 for organismfull in allfiles:
