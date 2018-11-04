@@ -5,15 +5,14 @@ Created on Fri Oct 26 21:56:07 2018
 
 @author: kalagz
 """
-#import pandas as pd
+import pandas as pd
 import networkx as nx
 import matplotlib.pyplot as plt
-from createPPIN import createPPIN
 import os, time
-import csv
+#import csv
 import numpy as np
 from scipy import stats
-from sklearn.linear_model import LogisticRegression as LogReg
+#from sklearn.linear_model import LogisticRegression as LogReg
 
 #FolderToParse = "G:\DATASETS\BioGrid\BIOGRID-ORGANISM-tab2/" #"BioGrid files/"
 FolderToParse = "EdgeLists/"
@@ -29,18 +28,20 @@ for organism in os.listdir( FolderToParse ):
     #####################
     # OPEN without pandas
     start = time.clock()
-    with open(FileToLoad, 'rb') as edgelist:
-        edge = csv.reader(edgelist, delimiter=' ')
-        G.add_edges_from( edge )
-    Time.append( time.clock()-start )
+#    with open(FileToLoad, 'rb') as edgelist:
+#        edge = csv.reader(edgelist, delimiter=' ')
+#        G.add_edges_from( edge )
+    
     # OPEN with pandas
-    #edgelist = pd.read_csv(FileToLoad, delimiter=' ', header = None)
-    #G.add_edges_from( edgelist.values )
+    edgelist = pd.read_csv(FileToLoad, delimiter=' ', header = None)
+    G.add_edges_from( edgelist.values )
+    Time.append( time.clock() - start )
+    
     M = G.number_of_edges()
     N = G.number_of_nodes()
     nNodes.append( N )
     nEdges.append( M )
-    """
+    
     ######################
     # Get organism's name:
     name = FileToLoad
@@ -82,43 +83,47 @@ for organism in os.listdir( FolderToParse ):
     fig.savefig( 'Visuals/'+name+"-DD.png" )
     plt.close()
     #plt.show()
-    """
+    
 f.close()
 ##########################
 ## Analyse Time VS nNodes:
-plt.figure()
 tosort = np.argsort(nNodes)
-nNodes = [ nNodes[x] for x in tosort ]
-TimePlot = [ Time[x] for x in tosort ]
-#plt.plot(nNodes, TimePlot, 'ro')
-#plt.loglog(nNodes, TimePlot, 'ro')
-# Estimate linearly
-X = np.log(nNodes)
-Y = np.log(TimePlot)
+X = [ nNodes[x] for x in tosort ]
+Y = [ Time[x] for x in tosort ]
+X = np.log( X )
+Y = np.log( Y )
+plt.figure()
 plt.plot(X, Y, 'ro', label='original data')
 slope, intercept, r_value, p_value, std_err = stats.linregress( X, Y )
 Z = [ slope*x + intercept for x in X ]
 #print(slope, intercept)
-plt.plot(X, Z, '-', label='y={:.2f}x+{:.2f}'.format(slope,intercept))
+plt.plot(X, Z, '-', label=r'$y={:.2f}x {:.2f}$'.format(slope,intercept))
 plt.legend(fontsize=11, loc= 'upper left')
-plt.title("Time Vs Number of Nodes & Logistic Regression")
+plt.title("Time vs Number of Nodes & Logistic Regression")
+plt.xlabel(r"Log - Number of Nodes $N$", fontweight="bold")
+plt.ylabel("Log - Time to Create", fontweight="bold")
 plt.savefig("TimeVsNodes.eps")
+plt.savefig("TimeVsNodes.png")
 plt.show()
 ##########################
 ## Analyse Time VS nEdges:
 plt.figure()
 tosort = np.argsort(nEdges)
-nEdges = [ nEdges[x] for x in tosort ]
-TimePlot = [ Time[x] for x in tosort ]
-X = np.log(nEdges)
-Y = np.log(TimePlot)
+X = [ nEdges[x] for x in tosort ]
+Y = [ Time[x] for x in tosort ]
+X = np.log( X )
+Y = np.log( Y )
 plt.plot(X, Y, 'ro', label='original data')
 slope, intercept, r_value, p_value, std_err = stats.linregress( X, Y )
 Z = [ slope*x + intercept for x in X ]
-plt.plot(X, Z, '-', label='y={:.2f}x+{:.2f}'.format(slope,intercept))
+plt.plot(X, Z, '-', label=r'$y={:.2f}x {:.2f}$'.format(slope,intercept))
+#plt.plot(X, Z, '-', label=r'$\sin(X) \cdot e^x$')
 plt.legend(fontsize=11, loc='upper left')
-plt.title("Time Vs Number of Edges & Logistic Regression")
+plt.title("Time vs Number of Edges & Logistic Regression")
+plt.xlabel(r"Log - Number of Edges $M$", fontweight="bold")
+plt.ylabel("Log - Time to Create", fontweight="bold")
 plt.savefig("TimeVsEdges.eps")
+plt.savefig("TimeVsEdges.png")
 plt.show()
 ###########################
 """

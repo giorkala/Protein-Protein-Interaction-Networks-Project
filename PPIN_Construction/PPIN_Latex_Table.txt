@@ -1,0 +1,66 @@
+$ Anopheles \ gambiae \ PEST $ & 2 & 1 & 1.00 & 1 & 1.00 \\ 
+$ Apis \ mellifera $ & 2 & 1 & 1.00 & 1 & 1.00 \\ 
+$ Arabidopsis \ thaliana \ Columbia $ & 9570 & 35242 & 7.37 & 78 & 0.98 \\ 
+$ Bacillus \ subtilis \ 168 $ & 2 & 1 & 1.00 & 1 & 1.00 \\ 
+$ Bos \ taurus $ & 437 & 405 & 1.85 & 73 & 0.16 \\ 
+$ Caenorhabditis \ elegans $ & 3938 & 7885 & 4.00 & 77 & 0.95 \\ 
+$ Candida \ albicans \ SC5314 $ & 713 & 860 & 2.41 & 30 & 0.89 \\ 
+$ Canis \ familiaris $ & 52 & 34 & 1.31 & 20 & 0.13 \\ 
+$ Cavia \ porcellus $ & 9 & 5 & 1.11 & 4 & 0.33 \\ 
+$ Chlamydomonas \ reinhardtii $ & 19 & 15 & 1.58 & 4 & 0.63 \\ 
+$ Chlorocebus \ sabaeus $ & 11 & 7 & 1.27 & 4 & 0.27 \\ 
+$ Cricetulus \ griseus $ & 32 & 24 & 1.50 & 8 & 0.50 \\ 
+$ Danio \ rerio $ & 245 & 250 & 2.04 & 37 & 0.40 \\ 
+$ Dictyostelium \ discoideum \ AX4 $ & 24 & 18 & 1.50 & 6 & 0.21 \\ 
+$ Drosophila \ melanogaster $ & 9191 & 54806 & 11.93 & 37 & 0.99 \\ 
+$ Emericella \ nidulans \ FGSC \ A4 $ & 64 & 62 & 1.94 & 6 & 0.70 \\ 
+$ Equus \ caballus $ & 4 & 2 & 1.00 & 2 & 0.50 \\ 
+$ Escherichia \ coli \ K12 $ & 2 & 1 & 1.00 & 1 & 1.00 \\ 
+$ Escherichia \ coli \ K12 \ MC4100 \ BW2952 $ & 10 & 8 & 1.60 & 2 & 0.80 \\ 
+$ Escherichia \ coli \ K12 \ MG1655 $ & 146 & 127 & 1.74 & 21 & 0.62 \\ 
+$ Escherichia \ coli \ K12 \ W3110 $ & 4063 & 181620 & 89.40 & 1 & 1.00 \\ 
+$ Gallus \ gallus $ & 391 & 417 & 2.13 & 42 & 0.59 \\ 
+$ Glycine \ max $ & 44 & 39 & 1.77 & 7 & 0.32 \\ 
+$ Hepatitus \ C \ Virus $ & 131 & 129 & 1.97 & 2 & 0.98 \\ 
+$ Homo \ sapiens $ & 22826 & 318912 & 27.94 & 14 & 1.00 \\ 
+$ Human \ Herpesvirus \ 1 $ & 174 & 194 & 2.23 & 1 & 1.00 \\ 
+$ Human \ Herpesvirus \ 2 $ & 7 & 4 & 1.14 & 3 & 0.43 \\ 
+$ Human \ Herpesvirus \ 3 $ & 4 & 2 & 1.00 & 2 & 0.50 \\ 
+$ Human \ Herpesvirus \ 4 $ & 240 & 235 & 1.96 & 7 & 0.77 \\ 
+$ Human \ Herpesvirus \ 5 $ & 91 & 79 & 1.74 & 12 & 0.38 \\ 
+$ Human \ Herpesvirus \ 6A $ & 11 & 7 & 1.27 & 4 & 0.36 \\ 
+$ Human \ Herpesvirus \ 6B $ & 7 & 4 & 1.14 & 3 & 0.43 \\ 
+$ Human \ Herpesvirus \ 7 $ & 2 & 1 & 1.00 & 1 & 1.00 \\ 
+$ Human \ Herpesvirus \ 8 $ & 714 & 687 & 1.92 & 45 & 0.53 \\ 
+$ Human \ Immunodeficiency \ Virus \ 1 $ & 1121 & 1299 & 2.32 & 1 & 1.00 \\ 
+$ Human \ Immunodeficiency \ Virus \ 2 $ & 16 & 12 & 1.50 & 4 & 0.50 \\ 
+$ Human \ papillomavirus \ 16 $ & 14 & 12 & 1.71 & 2 & 0.86 \\ 
+$ Macaca \ mulatta $ & 15 & 12 & 1.60 & 3 & 0.73 \\ 
+$ Meleagris \ gallopavo $ & 2 & 1 & 1.00 & 1 & 1.00 \\ 
+$ Mus \ musculus $ & 13003 & 38624 & 5.94 & 89 & 0.98 \\ 
+$ Mycobacterium \ tuberculosis \ H37Rv $ & 11 & 9 & 1.64 & 2 & 0.82 \\ 
+$ Neurospora \ crassa \ OR74A $ & 12 & 10 & 1.67 & 2 & 0.67 \\ 
+$ Nicotiana \ tomentosiformis $ & 2 & 1 & 1.00 & 1 & 1.00 \\ 
+$ Oryctolagus \ cuniculus $ & 283 & 271 & 1.92 & 33 & 0.50 \\ 
+$ Oryza \ sativa \ Japonica $ & 74 & 90 & 2.43 & 18 & 0.35 \\ 
+$ Ovis \ aries $ & 2 & 1 & 1.00 & 1 & 1.00 \\ 
+$ Pan \ troglodytes $ & 10 & 5 & 1.00 & 5 & 0.20 \\ 
+$ Pediculus \ humanus $ & 2 & 1 & 1.00 & 1 & 1.00 \\ 
+$ Plasmodium \ falciparum \ 3D7 $ & 1224 & 2445 & 4.00 & 23 & 0.96 \\ 
+$ Rattus \ norvegicus $ & 3713 & 5227 & 2.82 & 118 & 0.92 \\ 
+$ Ricinus \ communis $ & 3 & 2 & 1.33 & 1 & 1.00 \\ 
+$ Saccharomyces \ cerevisiae \ S288c $ & 7158 & 534073 & 149.22 & 1 & 1.00 \\ 
+$ Schizosaccharomyces \ pombe \ 972h $ & 4292 & 58217 & 27.13 & 7 & 1.00 \\ 
+$ Selaginella \ moellendorffii $ & 6 & 8 & 2.67 & 1 & 1.00 \\ 
+$ Simian \ Immunodeficiency \ Virus $ & 19 & 16 & 1.68 & 4 & 0.42 \\ 
+$ Simian \ Virus \ 40 $ & 6 & 5 & 1.67 & 1 & 1.00 \\ 
+$ Solanum \ lycopersicum $ & 45 & 96 & 4.27 & 7 & 0.47 \\ 
+$ Solanum \ tuberosum $ & 4 & 2 & 1.00 & 2 & 0.50 \\ 
+$ Strongylocentrotus \ purpuratus $ & 17 & 16 & 1.88 & 1 & 1.00 \\ 
+$ Sus \ scrofa $ & 94 & 79 & 1.68 & 23 & 0.23 \\ 
+$ Tobacco \ Mosaic \ Virus $ & 3 & 2 & 1.33 & 1 & 1.00 \\ 
+$ Ustilago \ maydis \ 521 $ & 4 & 3 & 1.50 & 1 & 1.00 \\ 
+$ Vaccinia \ Virus $ & 8 & 5 & 1.25 & 3 & 0.38 \\ 
+$ Vitis \ vinifera $ & 2 & 1 & 1.00 & 1 & 1.00 \\ 
+$ Xenopus \ laevis $ & 1128 & 1212 & 2.15 & 61 & 0.85 \\ 
+$ Zea \ mays $ & 21 & 11 & 1.05 & 10 & 0.14 \\ 

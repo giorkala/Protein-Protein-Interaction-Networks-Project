@@ -6,13 +6,9 @@ Created on Fri Oct 26 23:44:29 2018
 @author: kalagz
 """
 from os import path
-#from numba import jit
-import sys
 
-#@jit(nopython = True) #, parallel = True)
 def CreateEdgeList( pathtofile, name ):
     import pandas as pd
-    import matplotlib.pyplot as plt
     import warnings
 
     if path.exists(pathtofile):
@@ -66,14 +62,11 @@ def ChangeLabels( oldedgelist, name ):
     in a set data structure.
     --> The last feature is un-necessary since the same job takes place in
         function CreateEdgeList which preceeds.
-
     """
     #import pandas as pd
     # OR
     import pandas as pd
-    import networkx as nx
-    import matplotlib.pyplot as plt
-    import sys, warnings
+    import warnings
 
     if path.exists(oldedgelist):
         data = pd.read_csv(oldedgelist, delimiter=' ', header=None)
@@ -128,15 +121,15 @@ def CreateAdjMatrix( edgelist , name ):
     """
     import numpy as np
     import networkx as nx
-    import csv
-    from scipy import sparse as ssp
+    import csv, warnings
+    #from scipy import sparse as ssp
 
     G = nx.Graph()
 
     if path.exists(edgelist):
         #data = pd.read_csv(oldedgelist, delimiter=' ', header=None)
         # OR
-        with open(edgelist, 'rb') as edgelist:
+        with open(edgelist, 'r') as edgelist:
             edge = csv.reader(edgelist, delimiter=' ')
             G.add_edges_from( edge )
         S = nx.to_scipy_sparse_matrix(G, format='csr')
@@ -147,6 +140,46 @@ def CreateAdjMatrix( edgelist , name ):
     else:
         warnings.warn("File not found!")
         return 0
+        
+def MyCloseness( distances , dictionary):
+    """
+    Function that computes the closeness centality for all the nodes of a graph,
+    given the distances between each pair. 
+    Input:
+        distances : Path to file that contains distances between pair of nodes 
+                    with tab-separated values. It has been constructed in C.
+        dictionary: Python dict containing the re-labeling translation
+    Output:
+        closeness : Dictionary with keys the ID of edges and values the respective 
+                    closeness centrality. 
+    """
+    import pandas as pd
+    import numpy as np
+    
+    table = pd.read_csv(distances, delimiter=' ', header=None).values
+    unique, counts = np.unique( table, return_counts=True )
+    N = len(table); M = int( counts[1]/2 )
+    # Progress Check
+    print( "There are {0} nodes and {1} edges in this graph.".format(N,M) )
+    
+    # load the dictionary and bring it in usefull form:
+    translator = pd.read_csv(dictionary, delimiter=':', header=None).values
+    tosort = np.argsort(translator[:,0])
+    translator[:,0] = translator[ tosort, 0]
+    translator[:,1] = translator[ tosort, 1]
+    
+    closeness = {}
+    for node in range(N):
+        #temp =
+        closeness[ translator[node,1] ] = (N-1)/ sum( table[node, :N] )
+        
+    #closeness = sorted(closeness.items(), key=operator.itemgetter(1), reverse=True)
+    return closeness
+    
+    
+    
+    
+    
 #if __name__ == '__main__':
 #return
     #pathtofile = sys.argv[-1]
