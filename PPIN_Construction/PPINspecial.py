@@ -9,7 +9,7 @@ datafile = "EdgeLists/BIOGRID-ORGANISM-Homo_sapiens-3.5.165.edgelist"
 
 #distances = "H:/Distmat/Human_Herpesvirus_6A"
 #dictionary = "Dictionaries/Human_Herpesvirus_6A.dictionary"
- 
+
 # import pandas as pd  # IF available !
 import numpy as np
 import networkx as nx
@@ -30,7 +30,7 @@ G = nx.Graph()
 with open(datafile, 'r') as edgelist:
     edge = csv.reader(edgelist, delimiter=' ')
     G.add_edges_from( edge )
-    
+
 M = G.number_of_edges()
 N = G.number_of_nodes()
 # Progress Check
@@ -40,11 +40,11 @@ print("\nThere are {0} nodes and {1} edges in the graph of \n{2}\n".format(N, M,
 ###########################
 # Select k for top-k showing
 topk = 15;
-distances = "H:/Distmat/"+name; dictionary = "Dictionaries/"+name+".dictionary"
+distances = "/auto/dtchome/kalantzisg/Distmat/"+name; dictionary = "Dictionaries/"+name+".dictionary"
 RankingMethods = {}
 RankingMethods["Degree"] = "nx.degree_centrality(G)"
 RankingMethods["PageRank"] = "nx.algorithms.pagerank_scipy(G)"
-RankingMethods["HITS-Auth"] = "nx.algorithms.hits_scipy(G)[1]"
+RankingMethods["HITS-Hubs"] = "nx.algorithms.hits_scipy(G)[0]"
 RankingMethods["Katz centrality"] = "nx.algorithms.katz_centrality_numpy(G)"
 #RankingMethods["Betweeness Centrality"] = "nx.betweenness_centrality(G)"
 #RankingMethods["Closeness Centrality"] = "nx.closeness_centrality(G)"
@@ -68,18 +68,18 @@ for method in RankingMethods.keys():
     Order.append( method )
     print("Time duration for {0} = {1}".format(method, TotalTime[case]) )
     case += 1
-    
+
 best = { x: Results.count(x) for x in set(Results) }
 best = sorted(best.items(), key=operator.itemgetter(1), reverse=True)
 print("The most frequent nodes are:")
 for x in range( 5 ):
     print( best[x][0] )
 np.save(name+'-'+str(case)+'-Centralities.npy', Rankings[:,:case])
-    
-Kendalltaus = np.zeros([case,case])  
+
+Kendalltaus = np.zeros([case,case])
 SpearmanRs = np.zeros([case,case])
 for i in range(case):
-    for j in range( i+1, case): 
+    for j in range( i+1, case):
         Kendalltaus[i,j] = scipy.stats.kendalltau(Rankings[:, i] , Rankings[:, j])[0]
         Kendalltaus[j,i] = scipy.stats.kendalltau(Rankings[:, i] , Rankings[:, j])[0]
         SpearmanRs[i,j] = scipy.stats.spearmanr(Rankings[:, i] , Rankings[:, j])[0]

@@ -31,17 +31,17 @@ for organism in os.listdir( FolderToParse ):
 #    with open(FileToLoad, 'rb') as edgelist:
 #        edge = csv.reader(edgelist, delimiter=' ')
 #        G.add_edges_from( edge )
-    
+
     # OPEN with pandas
     edgelist = pd.read_csv(FileToLoad, delimiter=' ', header = None)
     G.add_edges_from( edgelist.values )
     Time.append( time.clock() - start )
-    
+
     M = G.number_of_edges()
     N = G.number_of_nodes()
     nNodes.append( N )
     nEdges.append( M )
-    
+
     ######################
     # Get organism's name:
     name = FileToLoad
@@ -56,7 +56,7 @@ for organism in os.listdir( FolderToParse ):
     # Get the number of connected components
     concomps = nx.number_connected_components(G)
     # Get the size of the largest component
-    largest = len( sorted(nx.connected_components(G), key = len, reverse=True)[0] )/float(N)
+    largest = len( max(nx.connected_components(G), key=len ) )/float(N)
     # Compute the average degree - take values from dict, then transform to list
     degrees = sorted( G.degree().values(), reverse=True )
 
@@ -83,7 +83,7 @@ for organism in os.listdir( FolderToParse ):
     fig.savefig( 'Visuals/'+name+"-DD.png" )
     plt.close()
     #plt.show()
-    
+
 f.close()
 ##########################
 ## Analyse Time VS nNodes:
@@ -99,7 +99,7 @@ Z = [ slope*x + intercept for x in X ]
 #print(slope, intercept)
 plt.plot(X, Z, '-', label=r'$y={:.2f}x {:.2f}$'.format(slope,intercept))
 plt.legend(fontsize=11, loc= 'upper left')
-plt.title("Time vs Number of Nodes & Logistic Regression")
+#plt.title("Time vs Number of Nodes & Logistic Regression")
 plt.xlabel(r"Log - Number of Nodes $N$", fontweight="bold")
 plt.ylabel("Log - Time to Create", fontweight="bold")
 plt.savefig("TimeVsNodes.eps")
@@ -119,7 +119,7 @@ Z = [ slope*x + intercept for x in X ]
 plt.plot(X, Z, '-', label=r'$y={:.2f}x {:.2f}$'.format(slope,intercept))
 #plt.plot(X, Z, '-', label=r'$\sin(X) \cdot e^x$')
 plt.legend(fontsize=11, loc='upper left')
-plt.title("Time vs Number of Edges & Logistic Regression")
+#plt.title("Time vs Number of Edges & Logistic Regression")
 plt.xlabel(r"Log - Number of Edges $M$", fontweight="bold")
 plt.ylabel("Log - Time to Create", fontweight="bold")
 plt.savefig("TimeVsEdges.eps")
