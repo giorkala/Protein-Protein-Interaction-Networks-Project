@@ -3,17 +3,16 @@
 Centrality and other analysis for specific PPINs
 """
 datafile = "EdgeLists/BIOGRID-ORGANISM-Homo_sapiens-3.5.165.edgelist"
-datafile = "EdgeLists/BIOGRID-ORGANISM-Human_Immunodeficiency_Virus_1-3.5.165.edgelist"
-datafile = "EdgeLists/BIOGRID-ORGANISM-Escherichia_coli_K12_W3110-3.5.165.edgelist"
-datafile = "EdgeLists/BIOGRID-ORGANISM-Human_Herpesvirus_6A-3.5.165.edgelist"
+#datafile = "EdgeLists/BIOGRID-ORGANISM-Human_Immunodeficiency_Virus_1-3.5.165.edgelist"
+#datafile = "EdgeLists/BIOGRID-ORGANISM-Escherichia_coli_K12_W3110-3.5.165.edgelist"
+#datafile = "EdgeLists/BIOGRID-ORGANISM-Human_Herpesvirus_6A-3.5.165.edgelist"
 
-distances = "H:/Distmat/Human_Herpesvirus_6A"
-dictionary = "Dictionaries/Human_Herpesvirus_6A.dictionary"
+#distances = "H:/Distmat/Human_Herpesvirus_6A"
+#dictionary = "Dictionaries/Human_Herpesvirus_6A.dictionary"
  
 # import pandas as pd  # IF available !
 import numpy as np
 import networkx as nx
-import matplotlib.pyplot as plt
 #from NetworkXmore import read_edgelists
 import csv, operator, time
 import scipy.stats
@@ -40,17 +39,18 @@ print("\nThere are {0} nodes and {1} edges in the graph of \n{2}\n".format(N, M,
 ## Centrality estimation ##
 ###########################
 # Select k for top-k showing
-topk = 11;
+topk = 15;
+distances = "H:/Distmat/"+name; dictionary = "Dictionaries/"+name+".dictionary"
 RankingMethods = {}
-#RankingMethods["Degree"] = "nx.degree_centrality(G)"
-#RankingMethods["PageRank"] = "nx.algorithms.pagerank_scipy(G)"}
-#RankingMethods["HITS-Auth"] = "nx.algorithms.hits_scipy(G)[1]"
-#RankingMethods["Katz centrality"] = "nx.algorithms.katz_centrality_numpy(G)"
+RankingMethods["Degree"] = "nx.degree_centrality(G)"
+RankingMethods["PageRank"] = "nx.algorithms.pagerank_scipy(G)"
+RankingMethods["HITS-Auth"] = "nx.algorithms.hits_scipy(G)[1]"
+RankingMethods["Katz centrality"] = "nx.algorithms.katz_centrality_numpy(G)"
 #RankingMethods["Betweeness Centrality"] = "nx.betweenness_centrality(G)"
-RankingMethods["Closeness Centrality"] = "nx.closeness_centrality(G)"
+#RankingMethods["Closeness Centrality"] = "nx.closeness_centrality(G)"
 RankingMethods["My Closeness Centrality"] = "MyCloseness( distances, dictionary )"
 
-Results = []; Rankings = np.zeros( [N,len(RankingMethods)] )
+Results = []; Rankings = np.zeros( [N, len(RankingMethods)] )
 case = 0 # index that counts the number of ranking methods
 Order = [] # List to "save" the order that ranking methods are implemented
 TotalTime = []
@@ -66,7 +66,7 @@ for method in RankingMethods.keys():
         #NotableNodes[ x , case ] = sorted_dict[x][0]
         Results.append( sorted_dict[x][0] )
     Order.append( method )
-    print("Time duration for {0} = {1}".format(method, TotalTime[case-1]) )
+    print("Time duration for {0} = {1}".format(method, TotalTime[case]) )
     case += 1
     
 best = { x: Results.count(x) for x in set(Results) }
@@ -81,7 +81,9 @@ SpearmanRs = np.zeros([case,case])
 for i in range(case):
     for j in range( i+1, case): 
         Kendalltaus[i,j] = scipy.stats.kendalltau(Rankings[:, i] , Rankings[:, j])[0]
+        Kendalltaus[j,i] = scipy.stats.kendalltau(Rankings[:, i] , Rankings[:, j])[0]
         SpearmanRs[i,j] = scipy.stats.spearmanr(Rankings[:, i] , Rankings[:, j])[0]
+        SpearmanRs[j,i] = scipy.stats.spearmanr(Rankings[:, i] , Rankings[:, j])[0]
 """
 #########################
 ## Degree Distribution ##

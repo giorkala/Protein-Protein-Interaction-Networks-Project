@@ -43,9 +43,9 @@ def CreateEdgeList( pathtofile, name ):
             # we consider only min(a,b) - max(a,b)
             edge = "{0} {1}\n".format( min( C1[x], C2[x] ), max( C1[x], C2[x] ))
             if edge not in EdgeList:
-                f1.write( edge ) # extract the edgelist
+                f1.write( "{0} {1}\n".format( C1[x], C2[x] )) # extract the edgelist
                 # Extract edge in the official symbols - these might be reversed!
-                f2.write("{0},{1}\n".format( C3[x], C4[x] ))
+                f2.write( "{0},{1}\n".format( C3[x], C4[x] ))
                 EdgeList.add( edge )
     f1.close()
     f2.close()
@@ -155,29 +155,55 @@ def MyCloseness( distances , dictionary):
     """
     import pandas as pd
     import numpy as np
+    import csv
     
-    table = pd.read_csv(distances, delimiter=' ', header=None).values
-    unique, counts = np.unique( table, return_counts=True )
-    N = len(table); M = int( counts[1]/2 )
+    #table = pd.read_csv(distances, delimiter=' ', header=None).values
+    #unique, counts = np.unique( table, return_counts=True )
+    #N = len(table); M = int( counts[1]/2 )
     # Progress Check
-    print( "There are {0} nodes and {1} edges in this graph.".format(N,M) )
+    #print( "There are {0} nodes and {1} edges in this graph.".format(N,M) )
     
     # load the dictionary and bring it in usefull form:
     translator = pd.read_csv(dictionary, delimiter=':', header=None).values
     tosort = np.argsort(translator[:,0])
-    translator[:,0] = translator[ tosort, 0]
+    #translator[:,0] = translator[ tosort, 0] # this is useless, it's 0,1,2,...
     translator[:,1] = translator[ tosort, 1]
     
     closeness = {}
-    for node in range(N):
-        #temp =
-        closeness[ translator[node,1] ] = (N-1)/ sum( table[node, :N] )
-        
+    node = 0    
+    edges = 0
+    with open(distances, 'r') as f:
+        data = csv.reader(f, delimiter = ' ')       
+        for row in data:
+            dists = np.array( row[:-1] )
+            # Last row contains NaNs, so we ommit it             
+            dists = [int(k) for k in dists]
+            # we check if current node is connected with other
+            if sum( dists )>0:
+                k = np.count_nonzero(dists)
+                # k is actually the number of nodes in current component -1 !
+                # and len(dists) is the total number of nodes in the graph
+                closeness[ str(translator[node,1]) ] =  k**2 /sum( dists )/( len(dists)-1 )
+                node += 1
+                edges += list(dists).count(1)
+                #if dists[node] == 1:
+                #    print("Auto-loop found! Node = ", node)
+            else:
+                # isolated node
+                closeness[ str(translator[node,1]) ] =  0
+            if ( node%4000 == 0):
+                print("More than {0} nodes are processed!".format(node) )
+            if node > len(translator):
+                print("Fualty nodes were spotted!")
+                break
+    print("Total nodes found = {0} and total number of edges = {1}".format( node, int(edges/2) ) )
+        # we need the number k of nodes in the component. This is equal to the
+        # nnz of the current row.
+        #k = np.count_nonzero( table[node, :] )
+        # >>> Last row contains NaNs, so we ommit it        
+        #closeness[ str(translator[node,1]) ] =  (k-1)**2 /sum( table[node, :N] )/( N-1 )
     #closeness = sorted(closeness.items(), key=operator.itemgetter(1), reverse=True)
     return closeness
-    
-    
-    
     
     
 #if __name__ == '__main__':
