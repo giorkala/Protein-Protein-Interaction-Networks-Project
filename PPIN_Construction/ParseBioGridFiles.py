@@ -7,7 +7,7 @@ import os
 from PPINutils  import CreateEdgeList, ChangeLabels, CreateAdjMatrix
 
 InitialFolder = "/auto/dtchome/kalantzisg/Downloads/BIOGRID-ORGANISM-3.5.165.tab2/"
-InitialFolder = "G:/DATASETS/BioGrid/BIOGRID-ORGANISM-tab2/"
+#InitialFolder = "G:/DATASETS/BioGrid/BIOGRID-ORGANISM-tab2/"
 
 allfiles = os.listdir( InitialFolder )
 for organismfull in allfiles:

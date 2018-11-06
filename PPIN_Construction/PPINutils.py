@@ -77,7 +77,7 @@ def ChangeLabels( oldedgelist, name ):
 
     C1 = list( (data.values)[:,0] )
     C2 = list( (data.values)[:,1] )
-    counter = 1
+    counter = 0
     Dict = {}
     EdgeList = set()
     for x in range( len(data) ):
@@ -96,12 +96,12 @@ def ChangeLabels( oldedgelist, name ):
             b = max( Dict[ C1[x] ] , Dict[ C2[x] ] )
             EdgeList.add("{0} {1}\n".format( a, b ))
     # save in the edgelist file
-    f = open('Dictionaries/'+name+'.edgelist','w')
+    f = open('EdgeLists_Relabeled/'+name+'.edgelist','w')
     for x in EdgeList:
         f.write( x )
     f.close()
     # now save the dictionary for translation
-    f = open('Dictionaries/'+name+'.dictionary','w')
+    f = open('EdgeLists_Relabeled/Dictionaries/'+name+'.dictionary','w')
     for key in Dict.keys():
         f.write("{0}:{1}\n".format( Dict[ key ], key ) )
     f.close()
@@ -140,43 +140,43 @@ def CreateAdjMatrix( edgelist , name ):
     else:
         warnings.warn("File not found!")
         return 0
-        
+
 def MyCloseness( distances , dictionary):
     """
     Function that computes the closeness centality for all the nodes of a graph,
-    given the distances between each pair. 
+    given the distances between each pair.
     Input:
-        distances : Path to file that contains distances between pair of nodes 
+        distances : Path to file that contains distances between pair of nodes
                     with tab-separated values. It has been constructed in C.
         dictionary: Python dict containing the re-labeling translation
     Output:
-        closeness : Dictionary with keys the ID of edges and values the respective 
-                    closeness centrality. 
+        closeness : Dictionary with keys the ID of edges and values the respective
+                    closeness centrality.
     """
     import pandas as pd
     import numpy as np
     import csv
-    
+
     #table = pd.read_csv(distances, delimiter=' ', header=None).values
     #unique, counts = np.unique( table, return_counts=True )
     #N = len(table); M = int( counts[1]/2 )
     # Progress Check
     #print( "There are {0} nodes and {1} edges in this graph.".format(N,M) )
-    
+
     # load the dictionary and bring it in usefull form:
     translator = pd.read_csv(dictionary, delimiter=':', header=None).values
     tosort = np.argsort(translator[:,0])
     #translator[:,0] = translator[ tosort, 0] # this is useless, it's 0,1,2,...
     translator[:,1] = translator[ tosort, 1]
-    
+
     closeness = {}
-    node = 0    
+    node = 0
     edges = 0
     with open(distances, 'r') as f:
-        data = csv.reader(f, delimiter = ' ')       
+        data = csv.reader(f, delimiter = ' ')
         for row in data:
             dists = np.array( row[:-1] )
-            # Last row contains NaNs, so we ommit it             
+            # Last row contains NaNs, so we ommit it
             dists = [int(k) for k in dists]
             # we check if current node is connected with other
             if sum( dists )>0:
@@ -200,12 +200,12 @@ def MyCloseness( distances , dictionary):
         # we need the number k of nodes in the component. This is equal to the
         # nnz of the current row.
         #k = np.count_nonzero( table[node, :] )
-        # >>> Last row contains NaNs, so we ommit it        
+        # >>> Last row contains NaNs, so we ommit it
         #closeness[ str(translator[node,1]) ] =  (k-1)**2 /sum( table[node, :N] )/( N-1 )
     #closeness = sorted(closeness.items(), key=operator.itemgetter(1), reverse=True)
     return closeness
-    
-    
+
+
 #if __name__ == '__main__':
 #return
     #pathtofile = sys.argv[-1]

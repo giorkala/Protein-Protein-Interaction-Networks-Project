@@ -58,10 +58,9 @@ for organism in os.listdir( FolderToParse ):
     # Get the size of the largest component
     largest = len( max(nx.connected_components(G), key=len ) )/float(N)
     # Compute the average degree - take values from dict, then transform to list
-    degrees = sorted( G.degree().values(), reverse=True )
-
-    # nx.degree_centrality(G)).values()
-    f.write("$ {0} $ & {1} & {2} & {3:.2f} & {4} & {5:.2f} \\\\ \n".format( shortname, N, M, np.mean(degrees), concomps, largest ))
+    degrees = G.degree().values()
+    
+    f.write("$ {0} $ & {1} & {2} & {3:.2f} & {4} & {5:.3f} \\\\ \n".format( shortname, N, M, np.mean(degrees), concomps, largest ))
 
     ##################
     # Visualize graph:
