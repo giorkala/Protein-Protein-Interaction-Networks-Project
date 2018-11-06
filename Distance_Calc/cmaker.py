@@ -1,5 +1,5 @@
 import os
-bfs=open("bfs_template.c","r")
+bfs=open("bfs_template.txt","r")
 bfs_template=bfs.read();
 
 # select folder to save file with distances
