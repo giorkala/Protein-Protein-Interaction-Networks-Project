@@ -70,7 +70,11 @@ for organism in os.listdir( FolderToParse ):
     degrees = G.degree().values()
     # export measurements
     f.write("$ {0} $ & {1} & {2} & {3:.2f} & {4} & {5:.3f} & {6} \\\\ \n".format( shortname, N, M, np.mean(degrees), concomps, largest, diam ))
+<<<<<<< HEAD
 
+=======
+ 
+>>>>>>> 959bbcebdd17a531c156bf988c69574b6f60120e
     ##################
     # Visualize graph:
     #plt.show()
