@@ -3,7 +3,7 @@
 """
 Created on Sat Oct 27 01:29:54 2018
 
-@author: kalagz
+@author: giorkala
 """
 # import pandas as pd  # not available in DTC !
 import numpy as np
