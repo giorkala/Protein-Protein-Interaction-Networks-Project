@@ -1,6 +1,6 @@
 """
-Script that parses all files from biogrid  dataset end does specific things for
-all cases, e.g. creating edgelists abd re-labeling graph-nodes.
+Script that parses all files from biogrid dataset end does specific things for
+all cases, e.g. create edgelists, re-label graph-nodes and produce adjacency matrices.
 ->The very first task to execute.
 """
 import os
@@ -32,3 +32,5 @@ for organismfull in allfiles:
     # We use only short names as now labels are indepedent of BioGrid.
     # Now we create adjacency matrices. Input can be either type of edgelist
     CreateAdjMatrix( 'EdgeLists/' + name + '.edgelist' , shortname )
+    
+##############################
