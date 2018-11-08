@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 Created on Fri Oct 26 21:56:07 2018
-@author: kalagz
+@author: giorkala
 Script that parses every available edgelist (in "FolderToParse"), computes basic measures,
 exports these to LaTeX format, visualises graphs (via NetworkX) and, finally, tests the time
 versus #Nodes or #Edges complexity.
