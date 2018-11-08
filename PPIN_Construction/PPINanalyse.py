@@ -7,11 +7,11 @@ Script that parses every available edgelist (in "FolderToParse"), computes basic
 exports these to LaTeX format, visualises graphs (via NetworkX) and, finally, tests the time
 versus #Nodes or #Edges complexity.
 """
-import pandas as pd
+import pandas as pd # OR:
+#import csv
 import networkx as nx
 import matplotlib.pyplot as plt
 import os, time
-#import csv
 import numpy as np
 from scipy import stats
 
