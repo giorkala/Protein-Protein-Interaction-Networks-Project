@@ -10,7 +10,7 @@ import numpy as np
 import networkx as nx
 import matplotlib.pyplot as plt
 #from NetworkXmore import read_edgelist
-from createPPIN import createAdjMatrix, ChangeNames
+#from createPPIN import createAdjMatrix, ChangeNames
 import os, csv, operator, collections
 #import pandas as pd
 
@@ -21,7 +21,7 @@ filetab2 = "BioGrid files/BIOGRID-ORGANISM-Human_Herpesvirus_6B-3.5.165.tab2.txt
 datafile = "Dictionaries/edge.egdelist"
 datafile = "EdgeLists/BIOGRID-ORGANISM-Homo_sapiens-3.5.165.edgelist"
 datafile = "EdgeLists/BIOGRID-ORGANISM-Human_Herpesvirus_6B-3.5.165.edgelist"
-datafile = "EdgeLists/BIOGRID-ORGANISM-Human_Immunodeficiency_Virus_1-3.5.165.edgelist"
+#datafile = "EdgeLists/BIOGRID-ORGANISM-Human_Immunodeficiency_Virus_1-3.5.165.edgelist"
 #"EdgeLists/BIOGRID-ORGANISM-Human_Immunodeficiency_Virus_1-3.5.165.edgelist"
 #datafile = "EdgeLists/BIOGRID-ORGANISM-Escherichia_coli_K12_W3110-3.5.165.edgelist"
 
@@ -48,6 +48,13 @@ with open(datafile, 'rb') as edgelist:
 M = G.number_of_edges()
 N = G.number_of_nodes()
 print("\nThere are {0} nodes and {1} edges in the graph of \n{2}\n".format(N, M, name) )
+if ( nx.is_connected(G) ):
+    diam = nx.algorithms.distance_measures.diameter(G)
+else:
+    diam = 0
+print( diam )
+
+"""
 #S = createAdjMatrix( G, "Sample" )
 ###############
 ## Visualise ##
@@ -72,7 +79,7 @@ for k, v in pos.items():
 #nx.draw_networkx_labels(G, pos_higher, font_size=11, font_weight='bold')
 plt.savefig('Visuals/'+name+'-graph.eps', bbox_inches = 'tight')
 plt.show()
-"""
+
 #########################
 ## Degree Distribution ##
 #########################

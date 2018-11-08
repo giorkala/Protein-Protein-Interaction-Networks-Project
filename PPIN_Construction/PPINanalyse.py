@@ -62,15 +62,15 @@ for organism in os.listdir( FolderToParse ):
         diam = nx.algorithms.distance_measures.diameter(G)
     else:
         # work on the largest connected component
-        LGC = max(nx.connected_component_subgraphs(G), key=len )
-        largest = len(LGC)/float(N)
+        LCC = max(nx.connected_component_subgraphs(G), key=len )
+        largest = len(LCC)/float(N)
         # Get the diameter of the LGC
-        diam = nx.algorithms.distance_measures.diameter(LGC)
+        diam = nx.algorithms.distance_measures.diameter(LCC)
     # Compute the average degree - take values from dict, then transform to list
     degrees = G.degree().values()
     # export measurements
     f.write("$ {0} $ & {1} & {2} & {3:.2f} & {4} & {5:.3f} & {6} \\\\ \n".format( shortname, N, M, np.mean(degrees), concomps, largest, diam ))
-    """
+
     ##################
     # Visualize graph:
     #plt.show()
@@ -133,4 +133,3 @@ plt.savefig("TimeVsEdges.png")
 #plt.show()
 ###########################
 ###########################
-"""
