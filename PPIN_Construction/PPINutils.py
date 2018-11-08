@@ -2,8 +2,11 @@
 # -*- coding: utf-8 -*-
 """
 Created on Fri Oct 26 23:44:29 2018
+@author: giorkala
 
-@author: kalagz
+Functions useful for the first task of the project. That is creating edgelists from
+TAB2 files, re-labeling, creating adjacency matrices (and save in *.npy) and computing 
+closeness cetrality after providing all the distances.
 """
 from os import path
 
@@ -34,8 +37,7 @@ def CreateEdgeList( pathtofile, name ):
     C4 = list( (data.values)[:,4] )
     f1 = open('EdgeLists/'+name+'.edgelist','w')
     f2 = open('OfficialSymbols/'+name+'.official_symbols.csv','w')
-    # In order to skip multiple copies of the same edge, we use
-    # Python's set structure
+    # In order to skip multiple copies of the same edge, we use Python's set structure
     EdgeList = set()
     for x in range( len(data) ):
         if C1[x] != C2[x]:
@@ -63,8 +65,6 @@ def ChangeLabels( oldedgelist, name ):
     --> The last feature is un-necessary since the same job takes place in
         function CreateEdgeList which preceeds.
     """
-    #import pandas as pd
-    # OR
     import pandas as pd
     import warnings
 
@@ -157,13 +157,7 @@ def MyCloseness( distances , dictionary):
     import numpy as np
     import csv
 
-    #table = pd.read_csv(distances, delimiter=' ', header=None).values
-    #unique, counts = np.unique( table, return_counts=True )
-    #N = len(table); M = int( counts[1]/2 )
-    # Progress Check
-    #print( "There are {0} nodes and {1} edges in this graph.".format(N,M) )
-
-    # load the dictionary and bring it in usefull form:
+   # load the dictionary and bring it in usefull form:
     translator = pd.read_csv(dictionary, delimiter=':', header=None).values
     tosort = np.argsort(translator[:,0])
     #translator[:,0] = translator[ tosort, 0] # this is useless, it's 0,1,2,...
@@ -196,15 +190,9 @@ def MyCloseness( distances , dictionary):
             if node > len(translator):
                 print("Fualty nodes were spotted!")
                 break
-    print("Total nodes found = {0} and total number of edges = {1}".format( node, int(edges/2) ) )
-        # we need the number k of nodes in the component. This is equal to the
-        # nnz of the current row.
-        #k = np.count_nonzero( table[node, :] )
-        # >>> Last row contains NaNs, so we ommit it
-        #closeness[ str(translator[node,1]) ] =  (k-1)**2 /sum( table[node, :N] )/( N-1 )
-    #closeness = sorted(closeness.items(), key=operator.itemgetter(1), reverse=True)
-    return closeness
 
+    print("Total nodes found = {0} and total number of edges = {1}".format( node, int(edges/2) ) )
+    return closeness
 
 #if __name__ == '__main__':
 #return
