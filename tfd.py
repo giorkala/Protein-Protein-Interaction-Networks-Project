@@ -31,16 +31,10 @@ for filename in os.listdir('Sizes'):
                     				used[int(cil[j][lb])]=1
             			else:
                				used[int(cil[j][lb])]=1
-        		start=0
-        		stop=i
-        		mid=(start+stop)/2
-        		while start<stop:
-				if used[mid]==1:
-        				start=mid+1
-                		else:
-					stop=mid
-                		mid=(start+stop)/2     
-        		cil[i][lb]=mid    
+        		for col in range(0,nodes):
+            			if used[col]==0:
+                			cil[i][lb]=col
+                			break       
 	nb=np.amax(cil,0)+1
 	y=np.transpose([math.log(i) for i in nb])
 	lboxes=range(1,lbmax+1)
@@ -50,9 +44,9 @@ for filename in os.listdir('Sizes'):
 	k=np.exp(lsq.x[0])
 	tfd=lsq.x[1]
 	fitted=[k*(1.0/lbox)**tfd for lbox in lboxes]
-    	results=open('TFD2/'+filename,"w")
+        results=open('TFD2/'+filename,"w")
 	results.write(str(tfd)+"\n")
 	results.write(str(lbmax)+"\n")
 	results.write(str(nb)+"\n")
 	results.write(str(fitted)+"\n")
-    	results.close()
+        results.close()
