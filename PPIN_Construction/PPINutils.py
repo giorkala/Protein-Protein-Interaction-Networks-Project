@@ -101,7 +101,7 @@ def ChangeLabels( oldedgelist, name ):
         f.write( x )
     f.close()
     # now save the dictionary for translation
-    f = open('EdgeLists_Relabeled/Dictionaries/'+name+'.dictionary','w')
+    f = open('../EdgeLists_Relabeled/Dictionaries/'+name+'.dictionary','w')
     for key in Dict.keys():
         f.write("{0}:{1}\n".format( Dict[ key ], key ) )
     f.close()
@@ -133,7 +133,7 @@ def CreateAdjMatrix( edgelist , name ):
             edge = csv.reader(edgelist, delimiter=' ')
             G.add_edges_from( edge )
         S = nx.to_scipy_sparse_matrix(G, format='csr')
-        np.save( 'AdjMatrices/'+ name + 'Adjmatrix.csr', S )
+        np.save( '../AdjMatrices/'+ name + 'Adjmatrix.csr', S )
         # the above might be problematic. save with SSP if possible:
         #ssp.save_npz( 'AdjMatrices/'+ name + 'Adjmatrix.csr', S )
         return S
