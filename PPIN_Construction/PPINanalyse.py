@@ -2,8 +2,10 @@
 # -*- coding: utf-8 -*-
 """
 Created on Fri Oct 26 21:56:07 2018
-
 @author: kalagz
+Script that parses every available edgelist (in "FolderToParse"), computes basic measures,
+exports these to LaTeX format, visualises graphs (via NetworkX) and, finally, tests the time
+versus #Nodes or #Edges complexity.
 """
 import pandas as pd
 import networkx as nx
@@ -12,9 +14,7 @@ import os, time
 #import csv
 import numpy as np
 from scipy import stats
-#from sklearn.linear_model import LogisticRegression as LogReg
 
-#FolderToParse = "G:\DATASETS\BioGrid\BIOGRID-ORGANISM-tab2/" #"BioGrid files/"
 FolderToParse = "EdgeLists/"
 Time = []
 nNodes = []
@@ -103,7 +103,7 @@ plt.xlabel(r"Log - Number of Nodes $N$", fontweight="bold")
 plt.ylabel("Log - Time to Create", fontweight="bold")
 plt.savefig("TimeVsNodes.eps")
 plt.savefig("TimeVsNodes.png")
-plt.show()
+#plt.show()
 ##########################
 ## Analyse Time VS nEdges:
 plt.figure()
@@ -123,13 +123,6 @@ plt.xlabel(r"Log - Number of Edges $M$", fontweight="bold")
 plt.ylabel("Log - Time to Create", fontweight="bold")
 plt.savefig("TimeVsEdges.eps")
 plt.savefig("TimeVsEdges.png")
-plt.show()
+#plt.show()
 ###########################
-"""
-X = np.array(nNodes).reshape(-1,1)
-Y = np.array( TimePlot ) #, dtype=np.float64)
-
-fit = LogReg().fit(X , Y)
-Z = fit.predict( X )
-plt.plot(nNodes, Z, 'g-')
-"""
+###########################
