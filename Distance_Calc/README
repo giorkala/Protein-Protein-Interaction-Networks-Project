@@ -1,3 +1,4 @@
 Files in this folder calculate the shortest distances between any two nodes in each of the 66 PPIN. 
-The algorithm used is BFS, implemented in C.
+The algorithm used is BFS, implemented in C. 
+The C implementation of BFS is an adaptation of the one found here: https://www.programiz.com/dsa/graph-bfs
 Two files used to make these BFS files (cmaker.py and bfs_template.c) are also included.
