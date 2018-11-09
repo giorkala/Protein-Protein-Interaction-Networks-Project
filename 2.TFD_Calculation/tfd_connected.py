@@ -1,3 +1,4 @@
+#This works in the same way as tfd.py, except it analyzes only the largest connected component instead of the whole graph
 import numpy as np
 import matplotlib.pyplot as plt
 import math
