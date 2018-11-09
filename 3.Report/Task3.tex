@@ -1,0 +1,31 @@
+\label{sec:4-task3}
+\input{TFD_Table}
+We are now ready to comment on the final part of our project, which is the TFD calculation for various PPINs. After implementing the box covering algorithm, we tested it in two versions of PPINs for each of the $66$ organisms, on the complete graph with isolated nodes or disconnected components, as well as on the largest connected component (LCC). The results could be grouped in the following three cases. Firstly, the fully connected networks which showed no difference, those which had disconnected components but TFD was on similar values and, thirdly, some organism which resulted in significantly different TFD between the whole graph and the largest connected component. 
+
+Table~\ref{table:tfd} summarizes the TFD of several PPIN, for both scenarios. $Anopheles gambiae PEST$ is an organism, among other, whose trivial PPIN -- two nodes with one edge -- is depicted in a TFD of $1$. \textit{HIV-1}, as stated earlier, has a fully connected PPIN and this is in accordance with the equality of the two TFDs.  
+
+
+
+\begin{figure}[h]
+	\begin{minipage}{0.45\textwidth}
+    	\centering
+		\includegraphics[width=\textwidth]{Graphics/Homo_sapiens_WG.eps}
+        \caption{Data fitting on \textit{Homo sapiens} complete PPIN}
+        \label{fig:HSWG}
+	\end{minipage}
+	%\hfill
+	\begin{minipage}{0.45\textwidth}
+		\centering
+		%\vspace{10pt} % Hack for correct positioning
+		\includegraphics[width=\textwidth]{Graphics/Homo_sapiens_LCC.eps}
+        \caption{Data fitting on the largest connected component of Homo sapiens PPIN}
+		\label{fig:HSLCC}
+	\end{minipage}
+\end{figure}
+
+The diagrams of Figures~\ref{fig:HSWG}-\ref{fig:HSLCC} present the number of boxes required for graph covering as a function of the box-side length, in a logarithmic scale. The estimated pairs are depicted as blue dots whereas green lines correspond to the linear-fit approximation.    
+
+\subsection*{Code and Scripts} For the sake of efficiency and productivity we used a \textsc{GitHub} repository \footnote{ \url{github.com/giorkala/Protein-Protein-Interaction-Networks-Project/tree/master/PPIN_Construction}} with all our scripts and functions. After providing the initial dataset, it should work as a pipeline following the directions in comments or descriptions.
+
+%\subsection*{Conclusions}
+

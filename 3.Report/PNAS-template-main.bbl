@@ -1,0 +1,17 @@
+\begin{thebibliography}{1}
+
+\bibitem{strogatz2001exploring}
+Strogatz SH (2001) Exploring complex networks.
+\newblock {\em nature} 410(6825):268.
+
+\bibitem{PPINtrain}
+Institute EB (year?) Network analysis of protein interaction data: an
+  introduction
+  (\url{https://www.ebi.ac.uk/training/online/course/network-analysis-protein-interaction-data-introduction}).
+\newblock Accessed: 2018-10-31.
+
+\bibitem{barabasi2003scale}
+Barab{\'a}si AL, Bonabeau E (2003) Scale-free networks.
+\newblock {\em Scientific american} 288(5):60--69.
+
+\end{thebibliography}

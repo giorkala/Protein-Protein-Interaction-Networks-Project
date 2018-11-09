@@ -1,0 +1,135 @@
+\documentclass[10pt,twoside]{pnas-new}
+% Use the lineno option to display guide line numbers if required.
+\usepackage[utf8]{inputenc}
+ 
+\usepackage{listings}
+\usepackage{color}
+\usepackage{mathtools}
+ 
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+ 
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
+ 
+\lstset{style=mystyle}
+ 
+\usepackage{array,etoolbox}
+\newcommand\rownumber{\stepcounter{magicrownumbers}\arabic{magicrownumbers}}
+\preto\tabular{\setcounter{magicrownumbers}{0}}
+\newcounter{magicrownumbers}
+\def\rownumber{}
+
+\usepackage{wrapfig}
+
+\newcommand{\NX}{ \textsc{NetworkX} }
+\newcommand{\BGRD}{ \textsc{BioGrid} }
+\newcommand{\PY}{ \textsc{Python} }
+
+\templatetype{pnasmathematics} % Choose template 
+% {pnasresearcharticle} = Template for a two-column research article
+% {pnasmathematics} = Template for a one-column mathematics article
+% {pnasinvited} = Template for a PNAS invited submission
+
+%remove watermark
+\setboolean{displaywatermark}{false}
+
+\title{Topological  Fractal  Dimension  of  Networks  of Protein–Protein  Interaction  Networks}
+%PNAS LaTeX Template for preparing single-column mathematics articles on Overleaf
+% Use letters for affiliations, numbers to show equal authorship (if applicable) and to indicate the corresponding author
+\author{Georgios Kalantzis} %[a]
+\author{Andrei Stoica} 
+
+\affil{Systems  Approaches to Biomedical Science, Doctoral Training Centre, University of Oxford}
+
+% Please give the surname of the lead author for the running footer
+%\leadauthor{ } 
+
+% Please add here a significance statement to explain the relevance of your work
+%\significancestatement{Authors must submit a 120-word maximum statement about the significance of their research paper written at a level understandable to an undergraduate educated scientist outside their field of speciality. The primary goal of the Significance Statement is to explain the relevance of the work in broad context to a broad readership. The Significance Statement appears in the paper itself and is required for all research papers.}
+
+% Please include corresponding author, author contribution and author declaration information
+%\authorcontributions{Please provide details of author contributions here.}
+%\authordeclaration{Please declare any conflict of interest here.}
+%\equalauthors{\textsuperscript{1}A.O.(Author One) and A.T. (Author Two) contributed equally to this work (remove if not applicable).}
+%\correspondingauthor{\textsuperscript{2}To whom correspondence should be addressed. E-mail: author.two\@email.com}
+
+% Keywords are not mandatory, but authors are strongly encouraged to provide them. If provided, please include two to five keywords, separated by the pipe symbol, e.g:
+\keywords{PPIN $|$ NetworkX $|$ BioGrid $|$ Network Science $|$ Centrality Measures} 
+
+\begin{abstract}
+Please provide an abstract of no more than 250 words in a single paragraph. Abstracts should explain to the general reader the major contributions of the article. References in the abstract must be cited in full within the abstract itself and cited in the text.
+\end{abstract}
+
+\dates{This manuscript was last compiled on \today}
+%\doi{\url{www.pnas.org/cgi/doi/10.1073/pnas.XXXXXXXXXX}}
+
+\begin{document}
+
+\maketitle
+\thispagestyle{firststyle}
+\ifthenelse{\boolean{shortarticle}}{\ifthenelse{\boolean{singlecolumn}}{\abscontentformatted}{\abscontent}}{}
+
+\section{Introduction \& Prerequisites}
+\label{SS:Intro}
+
+Networks are representations of real systems where individual units are modelled as nodes and interactions between these units as links. Formally speaking, this corresponds to a graph $\mathcal{G} = (\mathcal{V},\mathcal{E})$, with $\mathcal{V}$ and $\mathcal{E}$ standing for the set of nodes and edges respectively. Nodes can represent anything, ranging from regions of the human brain to electrical power plants. As a result, the study of networks pervades all of science, from neurobiology to statistical physics~\cite{strogatz2001exploring}.  
+
+The set of nodes $\mathcal{V}$ has usually a finite number of elements. Links can be undirected or directed, unweighted or weighted. When dealing with undirected edges, a link can be defined as a pair of nodes $(u,v)$; in directed graphs $(u,v)$ and $(v,u)$ correspond to different edges. In the case of weighted networks, links are also assigned with a real number characterising the importance of the association.
+
+There are two main ways for representing networks, namely lists and adjacency matrices. Let $\mathbf{A}$ be the adjacency matrix of graph  $\mathcal{G}$ containing $n$ nodes. Then $\mathbf{A}$ is of size $n\times n$ and element $A_{ij}$ is $1$ if nodes $i,j$ are connected, or $A_{ij}=0$ otherwise. In weighted networks non-zero elements of $\mathbf{A}$ are equal to the weights of the respective edges. Real complex networks, although might contain thousands of nodes, are usually sparse in regards of edges, which leads to the ability of representing by sparse matrices, special data structures efficient for computational tasks.
+
+After defining nodes and edges, the next important term is that of node-degree. The degree $k_i$ of node $i$ is defined as the number of edges linked to $i$. In directed graphs, the degree of a node might be discriminated in in-degree and out-degree, depending on whether the edges ending to or start from $i$ are counted. For undirected networks, the degree can be computed by
+\begin{equation} 
+	k_i = \sum_{j=1}^{n}A_{ij} = \mathbf{e}_i^\top ( \mathbf{A} \cdot \mathbf{e} ),
+\end{equation}
+
+where  $\mathbf{e}$ stands for a column-vector full of ones and $\mathbf{e}_i$ has zeros everywhere except element $i$ which is one. In other words, the product $ \mathbf{A} \cdot \mathbf{e} $ gives the degree for every node. These are some simple indicators showing why adjacency matrices are important: they connect Network Science with Linear Algebra.
+
+Graphs are very attractive tools to biological and medical research applications, since they can be used for the description of many mechanisms or interactions; some examples are metabolic or cell signaling networks. Another important direction are the so-called Protein-Protein Interaction Networks (which will be denoted as PPIN), which represent physical contacts between proteins within a cell. In brief, 
+proteins are macromolecules, consisting of one or more long chains of amino acid residues, which perform a vast array of functions within organisms, including catalysing metabolic reactions, DNA replication, responses to stimuli, providing structure to cells and organisms, and transporting molecules from one location to another. Usually, the aforementioned procedures incorporate the cascade of many proteins, resulting in networks of interactions.
+
+PPINs are characterised by three notable properties. First of all, PPINs show a small world effect meaning that there is great connectivity between proteins. More typically, the diameter (the maximum number of steps separating any two nodes) of such networks is small, regardless the number of nodes or edges. Such strong connectivity has important biological consequences, since it allows for an efficient and quick flow of signals within the network~\cite{PPINtrain}.
+
+Moreover, PPINs are scale-free. This class of networks can describe a variety of complex systems where some nodes have a tremendous number edges (hubs), whereas most nodes have only a few~\cite{barabasi2003scale}. In this sense, the network appears to have no scale which provides important features. For instance, scale-free networks are very robust and stable since small perturbations have low effect. Furthermore, hubs in cancer-linked networks could be used for targeted attacks in drug discovery.
+Finally, another crucial characteristic of PPINs is their modularity. The transitivity or clustering coefficient of a network is a measure of nodes' tendency to cluster together. High transitivity means that the network contains communities or groups of nodes that are densely connected internally. Generally speaking, structure always affects function~\cite{strogatz2001exploring}. In biological networks particularly, finding these communities is very important, because they can reflect functional modules and protein complexes.
+
+However, PPINs are not real but correspond to actual biological networks and occur after experimental procedures. As a result, data might contain noise and some observations can be less reliable since the record of molecular interactions is occasionally incomplete or patchy.
+
+\section{Construction of PPIN and Analysis}
+\input{Task1}
+
+\section{Computing the Topological Fractal Dimension}
+\input{Task2}
+
+\newpage
+\section{TFD of PPIN \& Conclusions}
+\input{Task3}
+
+% Bibliography
+\section*{References}
+\bibliography{PPIN-TFD_Literature}
+\newpage
+\include{PPIN_Latex_Table}
+
+%\acknow{Please include your acknowledgments here, set in a single paragraph. Please do not include any acknowledgments in the Supporting Information, or anywhere else in the manuscript.}
+%\showacknow % Display the acknowledgements section
+\end{document}

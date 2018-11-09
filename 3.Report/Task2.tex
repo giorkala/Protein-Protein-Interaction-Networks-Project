@@ -1,0 +1,75 @@
+\label{sec:3-task2}
+\subsection{The Box Counting Method}
+
+Before we can introduce the concept of topological fractal dimension of a network, a preamble through the idea of box covering (originally due to Hausdorff) is necessary. Given a network $G$ and a box size $l_B$, a box covering of the network consists of an ensemble of disjoint boxes that together cover every node, with the property that the distance between any two nodes in each box is less than the given $l_B$ value. For any $l_B$ we define $N_B$ as the minimum number of boxes that are required for such a covering. It is thus clear that for $l_B=1$ we have that $N_B = N$, which is defined as the number of nodes. As we increase $l_B$, $N_B$ will correspondingly decrease, until a value of $1$ is obtained if the network is connected (or more generally, the minimal attainable $N$ will equal the number of connected components in the graph). We define the $l_B$ for which $N_B$ reaches its minimum as $l_B^{max}$
+
+To identify the correct $N_B$ for a given $l_B$ in a reasonable amount of time, box covering algorithms have been developed. The problem of box covering is known to be NP-hard - that is, no algorithm will produce an exact solution in a reasonable amount of time. Therefore, existing algorithms only aim to optimally approximate $N_B$, rather than calculate it exactly.
+
+For any given network, the $N_B$ and the $l_B$ values have been shown to satisfy a relation of the form:
+\begin{equation} 
+	N_B \sim l_B^{-d_B} \label{eq:powerlaw}
+\end{equation}
+The exponent $d_B$ is defined as the topological fractal dimension of the network. To determine it, first we employ a box covering algorithm to calculate the $N_B$. The method we chose was a greedy algorithm, as described in \cite{song2007how}, with the following steps:
+\begin{enumerate}
+\setlength{\itemsep}{-1pt}
+	\item Initialize the network, numbering the nodes from 1 to N
+	\item For all $l_B$ values, assign a box number of 0 for the first node.
+	\item For $l_B$ values from 1 to $l_B^{max}$, repeat the following:
+	\begin{itemize}
+    \setlength{\itemsep}{-1pt}
+    	\item For node i (starting at node 2) mark all box numbers where the distance between i and j is greater or equal than $l_B$ as unavailable 
+        \item Select one box number from the remaining available ones for node i
+        \item Increase i till it reaches N
+        \item Increase $l_b$ till it reaches $l_b^{max}$
+	\end{itemize}
+\end{enumerate}
+
+
+\subsection{Implementation}
+
+This method necessitates information about the distances between every pair of nodes in the graph. This can be calculated as the algorithm is run (conveniently using the shortest path function from \NX) or alternatively pre-calculated before for every pair and stored in a matrix that will be read when the program that calculates the TFD starts. Due to speed constraints, we found the second approach to be preferable; as such, we wrote a C script to calculate the distance matrices for all $66$ different PPINs and we stored each one of then in a different file. Originally, the algorithm that we chose to calculate all the distances was Floyd-Warshall, due to simplicity of implementation. However, the speed of this dynamic programming algorithm proved insufficient for our needs, and we therefore switched to a breadth-first search (BFS) implementation, again done in C. The speed of computations was now satisfactory, and we managed to compute all the distances in our PPINs and then integrate them into the \PY program in order to calculate the number of boxes.
+
+\subsection{Testing the Method}
+
+The same \PY program was then used to calculate the TFD. To that direction, we rewrite Eq. \ref{eq:powerlaw} using a constant of proportionality $C$, then we take natural logarithms and rewrite everything in matrix form, forming a system of linear equations, as follows:
+
+\begin{equation} \begin{bmatrix}
+  \log N_1 \\
+  \log N_2 \\
+  \vdots \\
+  \log N_{l_B^{max}} \\
+\end{bmatrix} = \begin{bmatrix}
+  1 & -\log l_1 \\
+  1 & -\log l_2 \\
+  \vdots & \vdots  \\
+  1 & -\log l_B^{max} \\
+\end{bmatrix}
+\begin{bmatrix}
+  \log C & d \\
+\end{bmatrix}
+\end{equation}
+
+We solved for $C$ and $d$ using the linear least squares method from \PY's \textit{scipy} library. Before proceeding with the calculation on PPINs, we tested this greedy algorithm on synthetic networks. Three types of networks were considered: simple path graphs, lattice graphs and Erdos-Renyi graphs. In the path graph, where all the edges are between nodes with consecutive indices, we found that the value of the TFD seems to stabilize around 0.85 as we increase the number of nodes N. The theoretical predicted value was approximately 1, and the differences between it and the calculated value are likely to be due to the simplifying assumptions employed in order to find the theoretical value (detailed upon in the next section).
+
+Regarding the lattice graph, where nodes form a grid, the expected value was 2. Our algorithm would obtain values as small as 1.2 for some of the smallest lattice graphs (e.g.$n=3$), but it would continuously increase and eventually reach a plateau around 2.35 (obtained for very large lattice graphs, with $n>230000$). The discrepancy between 2.35 and 2 is partly due to the fact that on lattice graphs, the greedy algorithm is not guaranteed to find the optimal solution, so it overestimates $N_B$ for certain values of $l_B$. 
+
+Finally, our testing on Erdos-Renyi graphs (random graphs for which edge has a probability $p \in [0,1]$ to be included in the graph
+
+\subsection{Analytical Expressions of the TFD of Synthetical Networks}
+
+Certain simple synthetical networks behave in predictable ways, rendering calculations of TFD feasible. The most immediate example is the complete graph, which has an edge between every pair of nodes. Thus, a box covering of size $2$ will require just 1 box. Corroborating this with the fact that a box covering of size 1 requires n boxes, we observe that $C=n$ and $d=\text{log}_2^n$ fit our equation $N_B \approx Cl_B^{-d_{B}}$
+
+Another such example is the path graph. By construction, any distance between two nodes in this graph equals the absolute value of the difference of the two corresponding indices. Therefore, determining the optimal box covering is trivial: a box of size $l$ can contain at most $l$ nodes. So the total number of required boxes will be $\left\lceil \frac{n}{l_B} \right\rceil$ (here $\left\lceil \ \ \right\rceil$ denotes the ceil function, defined as the smallest integer larger or equal than $n$).
+
+Plugging back into our original equation, we arrive at this:
+
+\begin{equation} 
+	\left\lceil \frac{n}{l_B} \right\rceil \sim l_B^{-d_B} 
+\end{equation}
+
+Asymptotically $\left\lceil \frac{n}{l_B} \right\rceil \sim \frac{n}{l_B} $, so $\frac{n}{l_B} \approx C l_B^{-d_B} $, where $C$ is a proportionality constant. We can then observe that equality is attained when both $C=1$ and $d_B=1$ - thus, benefiting from the approximation of the ceiling function of $\frac{n}{l}$, we can use $d_B=1$ as an adequate approximation of the topological fractal dimension for path graphs. Notably, the greedy algorithm is exact for path graphs; it will always provide the correct number of boxes.
+
+
+
+
+
