@@ -1,1 +1,3 @@
-TFDs computed for all 66 networks.
+Calculation of TFD for all 66 PPINs.
+First line is TFD. Second number is the maximum length of boxes (which equals maximum distance found in the corresponding distance matrix)
+The two arrays before it are actual number of boxes & fitted number of boxes.
