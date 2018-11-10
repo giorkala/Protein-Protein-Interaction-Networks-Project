@@ -1,0 +1,50 @@
+This is BibTeX, Version 0.99d (TeX Live 2018/W32TeX)
+Capacity: max_strings=100000, hash_size=100000, hash_prime=85009
+The top-level auxiliary file: PNAS-template-main.aux
+The style file: pnas-new.bst
+A level-1 auxiliary file: PPIN_Latex_Table.aux
+Database file #1: PPIN-TFD_Literature.bib
+Warning--entry type for "PPINtrain" isn't style-file defined
+--line 21 of file PPIN-TFD_Literature.bib
+You've used 7 entries,
+            1837 wiz_defined-function locations,
+            525 strings with 4836 characters,
+and the built_in function-call counts, 1362 in all, are:
+= -- 107
+> -- 63
+< -- 1
++ -- 20
+- -- 13
+* -- 111
+:= -- 207
+add.period$ -- 14
+call.type$ -- 7
+change.case$ -- 5
+chr.to.int$ -- 0
+cite$ -- 7
+duplicate$ -- 70
+empty$ -- 145
+format.name$ -- 13
+if$ -- 300
+int.to.chr$ -- 0
+int.to.str$ -- 7
+missing$ -- 8
+newline$ -- 31
+num.names$ -- 7
+pop$ -- 21
+preamble$ -- 1
+purify$ -- 0
+quote$ -- 0
+skip$ -- 29
+stack$ -- 0
+substring$ -- 65
+swap$ -- 17
+text.length$ -- 1
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 0
+warning$ -- 0
+while$ -- 13
+width$ -- 8
+write$ -- 71
+(There was 1 warning)

@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+# this script compiles every *.c source file in the current folder
+# and also runs the executable 
+for i in *.c
+do
+	gcc $i -o filetorun
+	./filetorun	
+	# activate the following 3 commands for creating
+	# and keeping all the executables instead
+	#filetorun=${i%.c}.out
+	#gcc $i -o $filetorun
+	#./$filetorun	
+done

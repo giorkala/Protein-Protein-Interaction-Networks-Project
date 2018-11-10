@@ -14,4 +14,24 @@ Institute EB (year?) Network analysis of protein interaction data: an
 Barab{\'a}si AL, Bonabeau E (2003) Scale-free networks.
 \newblock {\em Scientific american} 288(5):60--69.
 
+\bibitem{katz1953new}
+Katz L (1953) A new status index derived from sociometric analysis.
+\newblock {\em Psychometrika} 18(1):39--43.
+
+\bibitem{langville2011google}
+Langville AN, Meyer CD (2011) {\em Google's PageRank and beyond: The science of
+  search engine rankings}.
+\newblock (Princeton University Press).
+
+\bibitem{wasserman1994social}
+Wasserman S, Faust K (1994) {\em Social network analysis: Methods and
+  applications}.
+\newblock (Cambridge university press) Vol.{}~8.
+
+\bibitem{song2007how}
+Song C, Gallos L, Havlin S, Makse H (2007) How to calculate the fractal
+  dimension of a complex network: the box covering algorithm.
+\newblock {\em Journal of Statistical Mechanics: Theory and Experiment}
+  2007(03):P03006.
+
 \end{thebibliography}
